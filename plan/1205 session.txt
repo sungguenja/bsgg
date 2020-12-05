@@ -1,0 +1,7 @@
+open dota peer like
+지도 좌표 (개인이 짜는거, api제공) https://www.youtube.com/watch?v=0462Rr24xt0&start=3314
+
+서버 사고
+git 연결
+
+유저시나리오 순서도 (전적 및 랭킹, 캐릭터 분석, 아이템)
