@@ -49,6 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # My App
+    'matchhistory',
+
+    # third party app
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +64,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # cors
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+# cors 접근
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+    'http://127.0.0.1:8080'
+)
 
 ROOT_URLCONF = 'bsgg.urls'
 
