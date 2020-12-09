@@ -49,9 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # My App
     'matchhistory',
-
+    'accounts',
+    
     # third party app
     'corsheaders',
 ]
@@ -139,6 +141,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+# auth user
+AUTH_USER_MODEL = 'accounts.User'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
