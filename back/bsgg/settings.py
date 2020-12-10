@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # My App
     'matchhistory',
     'accounts',
+    'characters',
     
     # third party app
     'corsheaders',
