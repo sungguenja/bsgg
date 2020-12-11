@@ -45,7 +45,7 @@ class Skill(models.Model):
     is_basic = models.CharField(max_length=255,default='basic')
 
     def __str__(self):
-        return '{1} {2}'.format(self.charac,self.name)
+        return '{0} {1}'.format(self.charac,self.name)
 
 class Weapon(models.Model):
     name = models.CharField(max_length=255)
