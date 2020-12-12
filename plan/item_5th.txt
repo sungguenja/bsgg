@@ -1,0 +1,4 @@
+update gamedata_item set max_quantity = 3 where kinds is 29;
+update gamedata_item set max_quantity = 5 where kinds is 26;
+update gamedata_item set max_quantity = 5 where kinds is 27;
+update gamedata_item set max_quantity = 5 where kinds is 28;

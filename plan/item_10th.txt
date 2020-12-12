@@ -1,0 +1,9 @@
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (50,1,1,57);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (50,1,1,75);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (30.3,1,2,75);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (3.03,1,2,74);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (3.03,1,2,76);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (3.03,1,2,77);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (3.03,1,2,46);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (3.03,1,2,);
+insert into gamedata_animalitem ('get_percent','pocket_number','animal_id_id','item_id_id') values (,,,);

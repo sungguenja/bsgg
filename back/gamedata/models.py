@@ -1,0 +1,35 @@
+from django.db import models
+
+# Create your models here.
+class Area(models.Model):
+    name = models.CharField(max_length=255)
+
+class Animal(models.Model):
+    name = models.CharField(max_length=255)
+    first_appear = models.IntegerField(default=60)
+    skill = models.TextField()
+
+class Item(models.Model):
+    name = models.CharField(max_length=255)
+    kinds = models.IntegerField()
+    rank = models.IntegerField()
+    max_quantity = models.IntegerField(default=1)
+    stats = models.TextField()
+    material_left = models.IntegerField()
+    material_right = models.IntegerField()
+
+class AreaItem(models.Model):
+    item_id = models.ForeignKey(Item,on_delete=models.CASCADE)
+    area_id = models.ForeignKey(Area,on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+
+class AreaAnimal(models.Model):
+    area_id = models.ForeignKey(Area,on_delete=models.CASCADE)
+    animal_id = models.ForeignKey(Animal,on_delete=models.CASCADE)
+    respon_amount = models.IntegerField(default=1)
+
+class AnimalItem(models.Model):
+    animal_id = models.ForeignKey(Animal,on_delete=models.CASCADE)
+    item_id = models.ForeignKey(Item,on_delete=models.CASCADE)
+    get_percent = models.FloatField(default=0)
+    pocket_number = models.IntegerField(default=1)

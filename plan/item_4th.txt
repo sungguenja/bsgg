@@ -1,0 +1,5 @@
+insert into gamedata_item ('name','kinds','rank','max_quantity','stats','material_left','material_right') values ('골든 브릿지',18,1,1,'{"공격력": "+8", "스킬 증폭": "+14%"}',25,215);
+insert into gamedata_item ('name','kinds','rank','max_quantity','stats','material_left','material_right') values ('싱글 픽업',18,1,1,'{"공격력": "+8", "공격 속도": "+15%", "기본 공격 추가 피해": "+2"}',25,207);
+insert into gamedata_item ('name','kinds','rank','max_quantity','stats','material_left','material_right') values ('베레타 M92F',5,1,1,'{"공격력": "+23", "이동 속도": "+0.01"}',7,75);
+insert into gamedata_item ('name','kinds','rank','max_quantity','stats','material_left','material_right') values ('초코파이',26,1,1,'{"체력 재생":"+600"}',56,61);
+insert into gamedata_item ('name','kinds','rank','max_quantity','stats','material_left','material_right') values ('성수',26,1,1,'{"체력 재생":"+600"}',64,47);

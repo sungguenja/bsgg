@@ -35,7 +35,7 @@ def get_secret(setting,sercrets=secrets):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = get_secret("DEBUG")
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'matchhistory',
     'accounts',
     'characters',
+    'gamedata',
     
     # third party app
     'corsheaders',
