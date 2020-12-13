@@ -1,26 +1,27 @@
 <template>
-  <div>
-    <div v-if="isLoading">로딩중</div>
-    <div v-else>
-      <button @click="SearchHistory">전적 갱신</button>
-      <div v-if="isError">
+  <div class="text-light">
+    <div v-show="isLoading" style="height:1080px;">
+      <Loading></Loading>
+    </div>
+    <div v-show="!isLoading">
+      <div v-if="isError" style="height: 1080px;">
+        <button @click="SearchHistory" class="m-3 btn btn-secondary">전적 갱신</button>
         <h1>없는 닉네임 또는 서버 에러</h1>
       </div>
-      <div v-else>
+      <div v-else class="py-3">
         <div class="d-flex justify-content-center">
-          <h1>{{user_name}}</h1>
-          <div class="d-flex">
+          <div style="background-color: rgb(51,51,51);">
+            <h1 class="m-3">{{user_name}}</h1>
+            <button @click="SearchHistory" class="m-3 btn btn-secondary">전적 갱신</button>
+          </div>
+          <div class="d-flex" style="background-color: rgb(51,51,51);">
             <div>
               <p>모스트 플레이</p>
-              <a><img :src="most_play[0].chr_img" style="height:80px; border-radius: 70%;"> {{most_play[0].chr_name}} 플레이 횟수: {{most_play[0].chr_cont}} 탑3 횟수: {{most_play[0].chr_top3}}</a><br>
-              <a><img :src="most_play[1].chr_img" style="height:80px; border-radius: 70%;"> {{most_play[1].chr_name}} 플레이 횟수: {{most_play[1].chr_cont}} 탑3 횟수: {{most_play[1].chr_top3}}</a><br>
-              <a><img :src="most_play[2].chr_img" style="height:80px; border-radius: 70%;"> {{most_play[2].chr_name}} 플레이 횟수: {{most_play[2].chr_cont}} 탑3 횟수: {{most_play[2].chr_top3}}</a>
+              <MostPlay v-for="(match,i) in most_play" :match="match" :key="i"></MostPlay>
             </div>
             <div>
               <p>평균 순위가 가장 높은 캐릭</p>
-              <a><img :src="most_rank[0].chr_img" style="height:80px; border-radius: 70%;"> {{most_rank[0].chr_name}} 평균 순위: {{most_rank[0].avg_win}} 최대 킬수: {{most_rank[0].max_kill}}</a><br>
-              <a><img :src="most_rank[1].chr_img" style="height:80px; border-radius: 70%;"> {{most_rank[1].chr_name}} 평균 순위: {{most_rank[1].avg_win}} 최대 킬수: {{most_rank[1].max_kill}}</a><br>
-              <a><img :src="most_rank[2].chr_img" style="height:80px; border-radius: 70%;"> {{most_rank[2].chr_name}} 평균 순위: {{most_rank[2].avg_win}} 최대 킬수: {{most_rank[2].max_kill}}</a><br>
+              <HighRank v-for="(match,i) in most_rank" :match="match" :key="i"></HighRank>
             </div>
           </div>
         </div>
@@ -28,12 +29,14 @@
         <div class="container">
           <div class="row">
             <div class="col-3">
-              <h2>우승 횟수: {{total_stat.win_cnt}}</h2>
-              <h2>평균 순위: {{total_stat.avg_win}}</h2>
-              <h2>평균 킬수: {{total_stat.avg_kill}}</h2>
+              <div style="background-color: rgb(51,51,51);">
+                <h2>우승 횟수: {{total_stat.win_cnt}}</h2>
+                <h2>평균 순위: {{total_stat.avg_win}}</h2>
+                <h2>평균 킬수: {{total_stat.avg_kill}}</h2>
+              </div>
             </div>
             <div class="col-9">
-              <RecentMatch v-for="(match,i) in recent_match" :match="match" :key="i"></RecentMatch>
+              <RecentMatch v-for="(match,i) in recent_match" :match="match" :key="i" :pk="i" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
             </div>
           </div>
         </div>
@@ -45,6 +48,9 @@
 <script>
 import Axios from 'axios'
 import RecentMatch from '../../components/matchhistory/RecentMatch.vue'
+import MostPlay from '../../components/matchhistory/MostPlay.vue'
+import HighRank from '../../components/matchhistory/HighRank.vue'
+import Loading from '../../components/varies/Loading.vue'
 const SERVER_URL = process.env.VUE_APP_SERVER_URL
 export default {
   data() {
@@ -79,7 +85,10 @@ export default {
         else {
           this.isError = false
           this.most_play = res.data.most_played
-          this.most_rank = res.data.character_statics
+          this.most_play.pop()
+          this.most_play.pop()
+          const now_rank = res.data.character_statics
+          this.most_rank = [now_rank[0],now_rank[1],now_rank[2]]
           this.recent_match = res.data.recent_match
           this.total_stat = res.data.total_statics
         }
@@ -90,7 +99,10 @@ export default {
     }
   },
   components: {
-    RecentMatch
+    RecentMatch,
+    MostPlay,
+    HighRank,
+    Loading
   }
 }
 </script>
