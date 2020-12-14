@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import MatchHistory from '../views/matchhistory/MatchHistory.vue'
+import CharacterList from '../views/gamedata/CharacterList.vue'
+import CharacterDetail from '../views/gamedata/CharacterDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -20,10 +22,20 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/matchhistoey/:user_name/:season/:team_mode',
+    path: '/matchhistory/:user_name/:season/:team_mode',
     name: 'MatchHistory',
     component: MatchHistory
-  }
+  },
+  {
+    path: '/characters',
+    name: 'CharacterList',
+    component: CharacterList
+  },
+  {
+    path: '/characters/:pk',
+    name: 'CharacterDetail',
+    component: CharacterDetail
+  },
 ]
 
 const router = new VueRouter({

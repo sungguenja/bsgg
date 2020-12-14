@@ -32,13 +32,22 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
   data() {
     return {
-      img1: '../../../../image/loading1.png',
-      img2: '../../../../image/loading2.jpg',
-      img3: '../../../../image/loading3.jpg'
+      img1: null,
+      img2: null,
+      img3: null
     }
+  },
+  created() {
+    var storage = firebase.storage().ref('loading1.png')
+    storage.getDownloadURL().then(url => {this.img1 = url})
+    storage = firebase.storage().ref('loading2.jpg')
+    storage.getDownloadURL().then(url => {this.img2 = url})
+    storage = firebase.storage().ref('loading3.jpg')
+    storage.getDownloadURL().then(url => {this.img3 = url}) 
   }
 }
 </script>

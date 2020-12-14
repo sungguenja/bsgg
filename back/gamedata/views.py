@@ -1,4 +1,4 @@
-from django.http import JsonResponse,Http404
+from django.http import JsonResponse
 from django.core import serializers
 from django.shortcuts import render
 from .models import *
@@ -22,6 +22,8 @@ def search_item(request,item_name):
         item_name = '매버릭 러너'
     elif item_name == '배틀 수트':
         item_name = '배틀 슈트'
+    elif item_name == '운명의꽃':
+        item_name = '운명의 꽃'
     item = Item.objects.get(name=item_name)
     item = {'name':item.name,'kind':item.rank,'stat':json.loads(item.stats)}
     return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})

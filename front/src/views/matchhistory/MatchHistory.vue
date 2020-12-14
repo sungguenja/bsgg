@@ -8,8 +8,8 @@
         <button @click="SearchHistory" class="m-3 btn btn-secondary">전적 갱신</button>
         <h1>없는 닉네임 또는 서버 에러</h1>
       </div>
-      <div v-else class="py-3">
-        <div class="d-flex justify-content-center">
+      <div v-else>
+        <div class="py-3 d-flex justify-content-center" style="background-color: rgb(51,51,51);">
           <div style="background-color: rgb(51,51,51);">
             <h1 class="m-3">{{user_name}}</h1>
             <button @click="SearchHistory" class="m-3 btn btn-secondary">전적 갱신</button>
@@ -71,6 +71,15 @@ export default {
     this.isError = false
     this.SearchHistory()
   },
+  watch: {
+    $route(to,from) {
+      this.user_name = from.params.user_name
+      this.user_name = to.params.user_name
+      this.isLoading = true
+      this.isError = false
+      this.SearchHistory()
+    }
+  },
   methods: {
     SearchHistory() {
       this.isLoading = true
@@ -85,8 +94,9 @@ export default {
         else {
           this.isError = false
           this.most_play = res.data.most_played
-          this.most_play.pop()
-          this.most_play.pop()
+          while(this.most_play.length > 3) {
+            this.most_play.pop()
+          }
           const now_rank = res.data.character_statics
           this.most_rank = [now_rank[0],now_rank[1],now_rank[2]]
           this.recent_match = res.data.recent_match
