@@ -1,14 +1,13 @@
 <template>
   <div id="app" style="background-color: #808080;">
     <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">NavBar</b-navbar-brand>
+      <b-navbar-brand @click="GoRouter(0)">전적 검색</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#">Link</b-nav-item>
-          <b-nav-item href="#" disabled>Disabled</b-nav-item>
+          <b-nav-item @click="GoRouter(1)">캐릭터 정보</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->
@@ -63,6 +62,10 @@ export default {
         }
       })
     },
+    GoRouter(n) {
+      const RouterList = ['Home','CharacterList']
+      this.$router.push({name: RouterList[n]})
+    }
   }
 }
 </script>
