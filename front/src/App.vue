@@ -1,6 +1,6 @@
 <template>
-  <div id="app" style="background-color: #808080;">
-    <b-navbar toggleable="lg" type="dark" variant="dark">
+  <div id="app" style="background-color: #707070;">
+    <b-navbar toggleable="lg" style="" variant="dark">
       <b-navbar-brand @click="GoRouter(0)">전적 검색</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>

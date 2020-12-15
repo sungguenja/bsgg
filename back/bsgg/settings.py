@@ -77,8 +77,15 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
-    'http://127.0.0.1:8080'
+    'http://127.0.0.1:8080',
+    'http://13.125.144.139',
+    'http://lumia.kr',
+    'http://루미아.kr',
+    'http://www.lumia.kr',
+    'http://www.루미아.kr',
+    'http://3.35.44.126',
 )
+
 # cors method
 CORS_ALLOW_METHODS = [
     'DELETE',

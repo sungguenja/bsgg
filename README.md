@@ -1,4 +1,4 @@
-# Bs.gg (가제)
+# lumia.kr (전 bs.gg)
 
 ## 개요
 
@@ -10,3 +10,8 @@
 
 https://www.erdcloud.com/d/KRafdf8bjEvgwHGeX
 
+# 배포 주소
+
+[영어 도메인 lumia.kr](http://lumia.kr/)
+
+[한글 도메인 루미아.kr](http://루미아.kr)

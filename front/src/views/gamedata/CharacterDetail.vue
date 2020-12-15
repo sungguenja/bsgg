@@ -164,6 +164,7 @@ export default {
   created() {
     this.pk = this.$route.params.pk
     this.SearchDetail()
+    console.log(this.skills)
   },
   methods: {
     SearchDetail() {
