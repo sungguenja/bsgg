@@ -129,7 +129,7 @@
 import Axios from 'axios'
 import firebase from 'firebase'
 import SkillWindow from '../../components/gamedata/SkillWindow.vue'
-const SERVER_URL = process.env.VUE_APP_SERVER_URL
+const SERVER_URL = `http://${window.location.hostname}:8000/`
 export default {
   data() {
     return {

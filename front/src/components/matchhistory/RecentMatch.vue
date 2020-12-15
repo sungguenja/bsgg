@@ -53,7 +53,7 @@
 
 <script>
 import Axios from 'axios'
-const SERVER_URL = process.env.VUE_APP_SERVER_URL
+const SERVER_URL = `http://${window.location.hostname}:8000/`
 export default {
   data() {
     return {

@@ -66,7 +66,7 @@ export default {
       const RouterList = ['Home','CharacterList']
       this.$router.push({name: RouterList[n]})
     }
-  }
+  },
 }
 </script>
 
