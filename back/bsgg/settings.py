@@ -84,6 +84,8 @@ CORS_ORIGIN_WHITELIST = (
     'http://www.lumia.kr',
     'http://www.루미아.kr',
     'http://3.35.44.126',
+    'http://xn--2s2b29c91l.kr',
+    'http://www.xn--2s2b29c91l.kr',
 )
 
 # cors method
