@@ -113,3 +113,25 @@ def searchhistory(request,user_name,season,team_mode):
             return JsonResponse({'success':0})
     else:
         return JsonResponse({'굳이 이렇게 오시나요':request.method})
+    
+def steam(request):
+    response = requests.get('https://api.steampowered.com/ISteamNews/GetNewsForApp/v2?appid=1049590&count=4').json()
+    response = response['appnews']['newsitems']
+    answer = {'response':[]}
+    for i in range(len(response)):
+        now = {}
+        now['title'] = response[i]['title']
+        now['click'] = response[i]['url']
+        if '[img]' in response[i]['contents']:
+            start = response[i]['contents'].index('[img]')+4
+            end = response[i]['contents'].index('[/img]')
+            text = response[i]['contents'][start:end]
+            for j in range(len(text)):
+                if text[j] == '/':
+                    text = text[j:end]
+                    break
+            now['url'] = 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/clans' + text
+        else:
+            now['url'] = 'https://raw.githubusercontent.com/sungguenja/lumiaimg/master/loading1.png'
+        answer['response'].append(now)
+    return JsonResponse(answer)

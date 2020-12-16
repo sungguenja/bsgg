@@ -10,6 +10,7 @@
 
 <script>
 import firebase from 'firebase'
+const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   data() {
     return {
@@ -26,6 +27,7 @@ export default {
     ChangeImg(name) {
       var storage = firebase.storage().ref(`캐릭터/전신/${name}_full.png`)
       storage.getDownloadURL().then(url => {this.card_img = url})
+      .catch(() => {this.card_img = IMG_URL + `전신/${name}_full.png`})
     },
     GoDetail() {
       this.$router.push({name:'CharacterDetail',params:{pk:this.character_inform.pk}})

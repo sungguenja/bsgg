@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="`background-image: url( ${backgroundImg});`">
+  <div id="app" :style="`background-image: url( ${backgroundImg}); min-height:`+user_height+'px; background-repeat: repeat-y;'">
     <div class="d-flex">
     <div style="width: 10%; height:62px; cursor: pointer;" @click="GoPush(2)">
       <img :src="require('./assets/image/assets/menu-image-home.png')" style="width:100%; height:100%; z-index:1;" alt="">
@@ -19,7 +19,7 @@
       </div>
     </div>
     </div>
-    <router-view/>
+    <router-view class="py-2"/>
   </div>
 </template>
 
@@ -30,7 +30,8 @@ export default {
       nickname: null,
       mode: '',
       backgroundImg: require('./assets/image/assets/bg.jpg'),
-      can_go: ['SearchHistory','CharacterList','Home','NotFoundPage']
+      can_go: ['SearchHistory','CharacterList','Home','NotFoundPage'],
+      user_height: screen.height
     }
   },
   methods: {
@@ -61,7 +62,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-height: 1060px;
 }
 
 .menu_image_home {

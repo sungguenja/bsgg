@@ -130,6 +130,7 @@ import Axios from 'axios'
 import firebase from 'firebase'
 import SkillWindow from '../../components/gamedata/SkillWindow.vue'
 const SERVER_URL = `http://${window.location.hostname}:8000/`
+const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   data() {
     return {
@@ -183,6 +184,7 @@ export default {
             if(this.skills[i].fields.is_basic == 'basic') {
               var skillstorageQ = firebase.storage().ref(`캐릭터/스킬/${this.stats.name}/basic_Q.png`)
               skillstorageQ.getDownloadURL().then(url => {this.Q.thimbnail = url})
+              .catch(() => {this.Q.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_Q.png`})
             }
           }
           if(this.skills[i].fields.button == 'W') {
@@ -190,6 +192,7 @@ export default {
             if(this.skills[i].fields.is_basic == 'basic') {
               var skillstorageW = firebase.storage().ref(`캐릭터/스킬/${this.stats.name}/basic_W.png`)
               skillstorageW.getDownloadURL().then(url => {this.W.thimbnail = url})
+              .catch(() => {this.W.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_W.png`})
             }
           }
           if(this.skills[i].fields.button == 'E') {
@@ -197,6 +200,7 @@ export default {
             if(this.skills[i].fields.is_basic == 'basic') {
               var skillstorageE = firebase.storage().ref(`캐릭터/스킬/${this.stats.name}/basic_E.png`)
               skillstorageE.getDownloadURL().then(url => {this.E.thimbnail = url})
+              .catch(() => {this.E.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_E.png`})
             }
           }
           if(this.skills[i].fields.button == 'R') {
@@ -204,6 +208,7 @@ export default {
             if(this.skills[i].fields.is_basic == 'basic') {
               var skillstorageR = firebase.storage().ref(`캐릭터/스킬/${this.stats.name}/basic_R.png`)
               skillstorageR.getDownloadURL().then(url => {this.R.thimbnail = url})
+              .catch(() => {this.R.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_R.png`})
             }
           }
           if(this.skills[i].fields.button == '패시브') {
@@ -211,6 +216,7 @@ export default {
             if(this.skills[i].fields.is_basic == 'basic') {
               var skillstorageT = firebase.storage().ref(`캐릭터/스킬/${this.stats.name}/basic_패시브.png`)
               skillstorageT.getDownloadURL().then(url => {this.passive.thimbnail = url})
+              .catch(() => {this.passive.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_패시브.png`})
             }
           }
         }
@@ -224,6 +230,7 @@ export default {
           weaponStorage.getDownloadURL().then(url => {
             this.weaponthumbnail.push(url)
           })
+          .catch(() => {this.weaponthumbnail.push(IMG_URL+`스킬/무기스킬/${this.weapons[j].name}.png`)})
         }
       })
       .catch(err => {console.log(err)})
