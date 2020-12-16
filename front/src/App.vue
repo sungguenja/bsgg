@@ -1,41 +1,24 @@
 <template>
-  <div id="app" style="background-color: #707070;">
-    <b-navbar toggleable="lg" style="" variant="dark">
-      <b-navbar-brand @click="GoRouter(0)">전적 검색</b-navbar-brand>
-
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item @click="GoRouter(1)">캐릭터 정보</b-nav-item>
-        </b-navbar-nav>
-
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-nav-form @submit.prevent="SearchMatch">
-            <b-form-input size="sm" class="mr-sm-2" placeholder="검색할 닉네임" v-model="nickname"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="light">전적 검색</b-button>
-          </b-nav-form>
-          <!-- 다중 언어 구현하게 되면
-          <b-nav-item-dropdown text="Lang" right>
-            <b-dropdown-item href="#">EN</b-dropdown-item>
-            <b-dropdown-item href="#">ES</b-dropdown-item>
-            <b-dropdown-item href="#">RU</b-dropdown-item>
-            <b-dropdown-item href="#">FA</b-dropdown-item>
-          </b-nav-item-dropdown> -->
-
-          <!-- 회원으로 뭔갈 할 생각이 생기면
-          <b-nav-item-dropdown right> -->
-            <!-- Using 'button-content' slot  요건 주석 둬야함-->
-            <!-- <template #button-content>
-              <em>User</em>
-            </template>
-            <b-dropdown-item href="#">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-          </b-nav-item-dropdown> -->
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
+  <div id="app" :style="`background-image: url( ${backgroundImg});`">
+    <div class="d-flex">
+    <div style="width: 10%; height:62px; cursor: pointer;" @click="GoPush(2)">
+      <img :src="require('./assets/image/assets/menu-image-home.png')" style="width:100%; height:100%; z-index:1;" alt="">
+      <div class="inner-shadow">
+        <img :src="require('./assets/image/assets/button-home.png')" 
+        :srcset="require('./assets/image/assets/button-home@2x.png')+' 2x,'+require('./assets/image/assets/button-home@3x.png')+' 3x'"
+        class="button_home">
+      </div>
+    </div>
+    <div style="width: 90%; height: 62px;">
+      <img :src="require('./assets/image/assets/menu-top.png')" style="height:75%; width:100%; transform:scaleY(-1); z-index:1; position: relative; top:0; left:0;" alt="">
+      <div style="z-index:2; position: absolute; top:10px; left:20%;">
+        <img id="search_button" :src="require('./assets/image/assets/button-pvp-log-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-pvp-log-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-pvp-log-off.png')}'`" class="nav_button" @click="GoPush(0)">
+        <img id="search_button" :src="require('./assets/image/assets/button-cha-info-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-cha-info-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-cha-info-off.png')}'`" class="nav_button" @click="GoPush(1)">
+        <img id="search_button" :src="require('./assets/image/assets/button-walkthrough-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-walkthrough-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-walkthrough-off.png')}'`" class="nav_button" @click="GoPush(3)">
+        <img id="search_button" :src="require('./assets/image/assets/button-contact-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-contact-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-contact-off.png')}'`" class="nav_button" @click="GoPush(3)">
+      </div>
+    </div>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -45,7 +28,9 @@ export default {
   data() {
     return {
       nickname: null,
-      mode: ''
+      mode: '',
+      backgroundImg: require('./assets/image/assets/bg.jpg'),
+      can_go: ['SearchHistory','CharacterList','Home','NotFoundPage']
     }
   },
   methods: {
@@ -62,9 +47,8 @@ export default {
         }
       })
     },
-    GoRouter(n) {
-      const RouterList = ['Home','CharacterList']
-      this.$router.push({name: RouterList[n]})
+    GoPush(n) {
+      this.$router.push({name: this.can_go[n]})
     }
   },
 }
@@ -77,18 +61,40 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 1060px;
 }
 
-#nav {
-  padding: 30px;
+.menu_image_home {
+  width: 243px;
+  height: 90px;
+  margin: 0 74px 52px 0;
+  padding: 28px 87px 0 0;
+  object-fit: contain;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.button_home {
+  width: 104px;
+  height: 28px;
+  object-fit: contain;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.inner-shadow {
+  width: 156px;
+  height: 62px;
+  padding: 18px 3px 33px 20px;
+  top:0%;
+  position: absolute;
+}
+
+@font-face {
+  font-family: 'SeoulNamsanM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SeoulNamsanM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nav_button {
+  margin: 1px 62px 23px 0;
+  cursor: pointer;
 }
 </style>

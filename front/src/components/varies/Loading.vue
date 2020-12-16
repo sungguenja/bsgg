@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="my-2">로딩중</h1>
+    <h1 class="py-2">로딩중</h1>
     <div class="pb-5">
       <b-carousel
         id="carousel-fade"
@@ -33,6 +33,7 @@
 
 <script>
 import firebase from 'firebase'
+const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   data() {
     return {
@@ -44,10 +45,13 @@ export default {
   created() {
     var storage = firebase.storage().ref('loading1.png')
     storage.getDownloadURL().then(url => {this.img1 = url})
+    .catch(() => {this.img1 = IMG_URL+'loading1.png'})
     storage = firebase.storage().ref('loading2.jpg')
     storage.getDownloadURL().then(url => {this.img2 = url})
+    .catch(() => {this.img2 = IMG_URL+'loading2.png'})
     storage = firebase.storage().ref('loading3.jpg')
-    storage.getDownloadURL().then(url => {this.img3 = url}) 
+    storage.getDownloadURL().then(url => {this.img3 = url})
+    .catch(() => {this.img3 = IMG_URL+'loading3.png'}) 
   }
 }
 </script>

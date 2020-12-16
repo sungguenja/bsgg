@@ -1,14 +1,14 @@
 <template>
   <div>
-    <form @submit.prevent="SearchMatch">
-      <input type="text" v-model="nickname">
-      <select v-model="mode">
+    <form @submit.prevent="SearchMatch" class="d-flex justify-content-center">
+      <input type="text" v-model="nickname" class="form-control mx-2" style="width:50%;">
+      <select class="from-select mx-2" v-model="mode">
         <option disabled value="">모드 선택</option>
         <option value="Solo">솔로</option>
         <option value="Duo">듀오</option>
         <option value="Trio">스쿼드</option>
       </select>
-      <button>검색</button>
+      <button class="byn btn-secondary mx-2">검색</button>
     </form>
   </div>
 </template>
