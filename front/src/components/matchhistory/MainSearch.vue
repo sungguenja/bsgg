@@ -3,8 +3,8 @@
     <div class="row">
       <h3 class="col-4 text-light">전적 검색</h3>
       <div class="col-4" style="float:left;">
-        <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer;"><br>
-        <a class="text-light">최근 전적 갱신 :</a>
+        <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer;" @click="SearchHistory"><br>
+        <a class="text-light">최근 전적 갱신 : {{search_time}}</a>
       </div>
       <div class="col-4 d-flex justify-content-between">
         <img :src="require('../../assets/image/assets/icon-solo-02.png')" style="cursor: pointer; height: 75%; margin-right:5px;" @click="ChangeMode(0)" class="mode_button">
@@ -61,18 +61,19 @@ export default {
       isLoading: false,
       isError: false,
       notYet: true,
-      recent_match: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      recent_match: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+      search_time: null
     }
   },
   methods: {
     SearchHistory() {
-      this.notYet = false
-      this.isLoading = true
-      this.isError = false
       if(this.user_name == null) {
         alert('닉네임을 입력해주세요')
         return false
       }
+      this.notYet = false
+      this.isLoading = true
+      this.isError = false
       Axios({
         method: "GET",
         url: `${SERVER_URL}matchhistory/search/${this.user_name}/${this.season}/${this.team_mode}`
@@ -81,6 +82,8 @@ export default {
         this.isLoading = false
         if(res.data.success == 0) {this.isError = true}
         else {
+          let today = new Date()
+          this.search_time = `${today.getFullYear()}/${today.getMonth()}/${today.getDate()}/${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}:${today.getMilliseconds()}`
           this.isError = false
           this.recent_match = res.data.recent_match
         }
