@@ -222,16 +222,10 @@ export default {
           console.log(i,this.skills[i])
         }
         storage.getDownloadURL().then(url => {this.chr_thumbnail = url})
-        var weaponStorage = null
         for(var j=0; j<this.weapons.length; j++) {
           this.weapons[j].skill = this.weapons[j].skill.replace(/\\n/g, '<br>')
           this.weapons[j].skill = this.weapons[j].skill.replace(/\n/g, '<br>')
-          weaponStorage = null
-          weaponStorage = firebase.storage().ref(`캐릭터/스킬/무기스킬/${this.weapons[j].name}.png`)
-          weaponStorage.getDownloadURL().then(url => {
-            this.weaponthumbnail.push(url)
-          })
-          .catch(() => {this.weaponthumbnail.push(IMG_URL+`스킬/무기스킬/${this.weapons[j].name}.png`)})
+          this.weaponthumbnail.push(IMG_URL+`스킬/무기 스킬/${this.weapons[j].name}.png`)
         }
       })
       .catch(err => {console.log(err)})
