@@ -176,6 +176,7 @@ export default {
         this.stats = res.data.character[0].fields
         this.skills = res.data.skills
         this.weapons = res.data.weapons
+        this.chr_thumbnail = IMG_URL + `소형/${this.stats.name}.png`
         var storage = firebase.storage().ref(`캐릭터/소형/${this.stats.name}.png`)
         for(var i=0;i<this.skills.length;i++) {
           if(this.skills[i].fields.button == 'Q') {
