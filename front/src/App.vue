@@ -1,23 +1,19 @@
 <template>
-  <div id="app" :style="`background-image: url( ${backgroundImg}); min-height:`+user_height+'px; background-repeat: repeat-y;'">
-    <div class="d-flex">
-    <div style="width: 10%; height:62px; cursor: pointer;" @click="GoPush(2)">
-      <img :src="require('./assets/image/assets/menu-image-home.png')" style="width:100%; height:100%; z-index:1;" alt="">
-      <div class="inner-shadow">
-        <img :src="require('./assets/image/assets/button-home.png')" 
-        :srcset="require('./assets/image/assets/button-home@2x.png')+' 2x,'+require('./assets/image/assets/button-home@3x.png')+' 3x'"
-        class="button_home">
+  <div id="app" :style="`background-image: url( ${backgroundImg}); min-height:`+user_height+'px; background-repeat: repeat;'">
+    <div class="d-flex" style="height: 6%;">
+      <img :src="require('./assets/image/assets/button-home.png')" style="width: 10%; height: 100%; cursor: pointer;" alt="" @click="GoPush(2)">
+      <div :style="`width: 90%; height: 100%; background-image: url(${require('./assets/image/assets/menu-top.png')}); background-size: cover;`" class="d-flex justify-content-between">
+        <div class="my-2" style="margin-left: 4%;">
+          <span class="nav_button_text" @click="GoPush(0)">전적 검색</span>
+          <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
+          <span class="nav_button_text" @click="GoPush(3)">아이템 정보</span>
+          <span class="nav_button_text" @click="GoPush(3)">공략</span>
+          <span class="nav_button_text" @click="GoPush(3)">Contact</span>
+        </div>
+        <form @submit.prevent="Search" class="my-2" style="width: 20%; margin-right: 4%;">
+          <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="user_name" placeholder="검색을 해보아요">
+        </form>
       </div>
-    </div>
-    <div style="width: 90%; height: 62px;">
-      <img :src="require('./assets/image/assets/menu-top.png')" style="height:75%; width:100%; transform:scaleY(-1); z-index:1; position: relative; top:0; left:0;" alt="">
-      <div style="z-index:2; position: absolute; top:10px; left:20%;">
-        <img id="search_button" :src="require('./assets/image/assets/button-pvp-log-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-pvp-log-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-pvp-log-off.png')}'`" class="nav_button" @click="GoPush(0)">
-        <img id="search_button" :src="require('./assets/image/assets/button-cha-info-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-cha-info-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-cha-info-off.png')}'`" class="nav_button" @click="GoPush(1)">
-        <img id="search_button" :src="require('./assets/image/assets/button-walkthrough-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-walkthrough-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-walkthrough-off.png')}'`" class="nav_button" @click="GoPush(3)">
-        <img id="search_button" :src="require('./assets/image/assets/button-contact-off.png')" alt="" :onmouseover="`this.src='${require('./assets/image/assets/button-contact-on.png')}'`" :onmouseout="`this.src='${require('./assets/image/assets/button-contact-off.png')}'`" class="nav_button" @click="GoPush(3)">
-      </div>
-    </div>
     </div>
     <router-view class="py-2"/>
   </div>
@@ -50,6 +46,9 @@ export default {
     },
     GoPush(n) {
       this.$router.push({name: this.can_go[n]})
+    },
+    Search() {
+      console.log('됨')
     }
   },
 }
@@ -96,5 +95,24 @@ export default {
 .nav_button {
   margin: 1px 62px 23px 0;
   cursor: pointer;
+}
+
+.nav_button_text {
+  color: #bdbdbd;
+  margin: 19px 81px 26px 0;
+  font-family: 'SeoulNamsanM';
+  font-size: 3vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -1.88px;
+  text-align: center;
+  cursor: pointer;
+  text-shadow: 4px 4px 4px black;
+}
+
+.nav_button_text:hover {
+  color: orange;
 }
 </style>

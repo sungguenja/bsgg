@@ -1,18 +1,22 @@
 <template>
   <div class="container">
     <div class="row">
-      <h3 class="col-4 text-light">전적 검색</h3>
-      <div class="col-4" style="float:left;">
-        <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer;" @click="SearchHistory"><br>
-        <a class="text-light">최근 전적 갱신 : {{search_time}}</a>
-      </div>
-      <div class="col-4 d-flex justify-content-between">
-        <img :src="require('../../assets/image/assets/icon-solo-02.png')" style="cursor: pointer; height: 75%; margin-right:5px;" @click="ChangeMode(0)" class="mode_button">
-        <img :src="require('../../assets/image/assets/icon-squad-01.png')" style="cursor: pointer; height: 75%; margin-right:5px;" @click="ChangeMode(1)" class="mode_button">
-        <img :src="require('../../assets/image/assets/icon-duo-01.png')" style="cursor: pointer; height: 75%; margin-right:5px;" @click="ChangeMode(2)" class="mode_button">
+      <div class="col-12 d-flex justify-content-between">
+        <div class="d-flex">
+          <span class="text-light search_text">전적 검색</span>
+          <div style="float: left;">
+            <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer; float:left;" @click="SearchHistory"><br>
+            <span class="text-light ml-2" style="float: left;">최근 전적 갱신<br>{{search_time}}</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <span class="mode_text mx-3 clicked_mode" @click="ChangeMode(0)">Solo</span>
+          <span class="mode_text mx-3" @click="ChangeMode(1)">Duo</span>
+          <span class="mode_text mx-3" @click="ChangeMode(2)">Squad</span>
+        </div>
       </div>
       <form class="col-12 my-2" @submit.prevent="SearchHistory">
-        <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(206,144,60);" v-model="user_name">
+        <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(206,144,60); padding: 0 10px 0 10px;" v-model="user_name" placeholder="아이디를 검색해보세요.">
       </form>
       <div class="col-12">
         <div v-show="notYet" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 94.5%; position: absolute;">
@@ -83,7 +87,7 @@ export default {
         if(res.data.success == 0) {this.isError = true}
         else {
           let today = new Date()
-          this.search_time = `${today.getFullYear()}/${today.getMonth()}/${today.getDate()}/${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}:${today.getMilliseconds()}`
+          this.search_time = `${today.getFullYear()}/${today.getMonth()}/${today.getDate()}/${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
           this.isError = false
           this.recent_match = res.data.recent_match
         }
@@ -96,10 +100,10 @@ export default {
     },
     ChangeMode(n) {
       this.team_mode = this.mode[n]
-      var buttons = document.querySelectorAll(".mode_button")
-      for(var i=0;i<buttons.length;i++) {
-        if(i==n){buttons[i].src = require(`../../assets/image/assets/icon-${this.little_mode[i]}-02.png`)}
-        else {buttons[i].src = require(`../../assets/image/assets/icon-${this.little_mode[i]}-01.png`)}
+      var ModeButtons = document.querySelectorAll('.mode_text')
+      for(var i=0;i<ModeButtons.length;i++) {
+        if(i==n){ModeButtons[i].className = 'mode_text mx-3 clicked_mode'}
+        else {ModeButtons[i].className = 'mode_text mx-3'}
       }
     },
     ShowDetail(n) {
@@ -111,5 +115,38 @@ export default {
 </script>
 
 <style>
+.search_text {
+  font-family: 'SeoulNamsanB';
+  font-size: 3vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -3.9px;
+  text-align: left;
+  color: #bdbdbd;
+  text-shadow: 4px 4px 4px black;
+}
 
+.mode_text {
+  font-family: 'SeoulNamsanB';
+  font-size: 3vh;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -3.9px;
+  text-align: left;
+  color: #bdbdbd;
+  text-shadow: 4px 4px 4px black;
+  cursor: pointer;
+}
+
+.mode_text:hover {
+  color: orange;
+}
+
+.clicked_mode {
+  color: orange;
+}
 </style>
