@@ -64,3 +64,6 @@ class Weapon(models.Model):
 class UsedWeapon(models.Model):
     charac = models.ForeignKey(Character,on_delete=models.CASCADE)
     weapon_name = models.ForeignKey(Weapon,models.CASCADE)
+
+    def __str__(self):
+        return '{0} {1}'.format(self.charac.name,self.weapon_name.name)

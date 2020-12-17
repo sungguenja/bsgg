@@ -165,7 +165,6 @@ export default {
   created() {
     this.pk = this.$route.params.pk
     this.SearchDetail()
-    console.log(this.skills)
   },
   methods: {
     SearchDetail() {
@@ -219,6 +218,7 @@ export default {
               .catch(() => {this.passive.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_패시브.png`})
             }
           }
+          console.log(i,this.skills[i])
         }
         storage.getDownloadURL().then(url => {this.chr_thumbnail = url})
         var weaponStorage = null

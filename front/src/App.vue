@@ -11,7 +11,7 @@
           <span class="nav_button_text" @click="GoPush(3)">Contact</span>
         </div>
         <form @submit.prevent="Search" class="my-2" style="width: 20%; margin-right: 4%;">
-          <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="user_name" placeholder="검색을 해보아요">
+          <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="검색을 해보아요">
         </form>
       </div>
     </div>
@@ -23,27 +23,13 @@
 export default {
   data() {
     return {
-      nickname: null,
-      mode: '',
       backgroundImg: require('./assets/image/assets/bg.jpg'),
       can_go: ['SearchHistory','CharacterList','Home','NotFoundPage'],
-      user_height: screen.height
+      user_height: screen.height,
+      search_text: null,
     }
   },
   methods: {
-    SearchMatch() {
-      if(this.mode == '') {
-        this.mode = 'Solo'
-      }
-      this.$router.push({
-        name: 'MatchHistory',
-        params: {
-          user_name:this.nickname,
-          season: 'OPEN',
-          team_mode: this.mode
-        }
-      })
-    },
     GoPush(n) {
       this.$router.push({name: this.can_go[n]})
     },
