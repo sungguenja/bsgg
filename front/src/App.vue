@@ -29,6 +29,9 @@ export default {
       search_text: null,
     }
   },
+  created() {
+    document.title = 'Lumia'
+  },
   methods: {
     GoPush(n) {
       this.$router.push({name: this.can_go[n]})
