@@ -1,0 +1,97 @@
+<template>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <Fusion :id="pk"></Fusion>
+      </div>
+      <div class="offset-2 col-4">
+        <table class="table table-secondary table-hover">
+          <tbody>
+            <tr>
+              <th colspan="2">{{item.item.name}}</th>
+            </tr>
+            <tr>
+              <th colspan="2"><img :src="img_src" alt="" style="width: 50%;"></th>
+            </tr>
+            <tr>
+              <th colspan="2" style="background-color: rgba(255,127,0,0.5)"><br></th>
+            </tr>
+            <tr>
+              <td>종류</td>
+              <td>{{cate[item.item.kinds]}}</td>
+            </tr>
+            <tr>
+              <td>등급</td>
+              <td>{{ranks[item.item.rank]}}</td>
+            </tr>
+            <tr>
+              <td>능력치</td>
+              <td>
+                <b v-for="(value,key) in stats" :key="key+value">{{key}} : {{value}} <br> </b>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12">
+        <b class="text-light">상위템</b>
+        <div class="d-flex">
+          <SoloItem v-for="(item,index) in item.upper" :key="item.name + index" :item="item" :kind="cate[item.kinds]" class="m-2"></SoloItem>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Axios from 'axios'
+import SoloItem from '../../components/gamedata/SoloItem.vue'
+import Fusion from '../../components/gamedata/FusionItem.vue'
+const SERVER_URL = `http://${window.location.hostname}:8000/`
+const IMG_URL = process.env.VUE_APP_IMG_GIT
+export default {
+  data() {
+    return {
+      pk: this.$route.params.pk,
+      item: null,
+      cate: [0,'단검','양손검','도끼','쌍검','권총','돌격 소총','저격총','레이피어','창','망치','방망이','투척','암기','활','석궁','글러브','톤파','기타','쌍절곤','채찍','머리','옷','팔','다리','장식','음식','음료','설치','재료'],
+      ranks: ['일반','고급','희귀','영웅','전설'],
+      img_src: null,
+      stats: null
+    }
+  },
+  created() {
+    this.SearchDetail()
+  },
+  components: {
+    SoloItem,
+    Fusion
+  },
+  methods: {
+    SearchDetail() {
+      this.pk = this.$route.params.pk
+      Axios({
+        method: "GET",
+        url: SERVER_URL + 'gamedata/detail/' + this.pk
+      })
+      .then(res => {
+        this.item = res.data
+        this.img_src = IMG_URL + `아이템/${this.cate[this.item.item.kinds]}/${this.item.item.name}.png`
+        this.stats = JSON.parse(this.item.item.stats)
+      })
+      .catch(err => {console.log(err)})
+    }
+  },
+  watch: {
+    $route(to,from) {
+      this.pk = from.params.pk
+      this.pk = to.params.pk
+      this.SearchDetail()
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

@@ -49,6 +49,10 @@
 export default {
   methods: {
     GoPush(n) {
+      if(n==0) {
+        this.$router.push({name: 'WeaponCategory'})
+        return false
+      }
       this.$router.push({name: 'Category',params:{category:n}})
     }
   }

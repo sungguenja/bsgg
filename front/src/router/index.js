@@ -7,7 +7,9 @@ import CharacterList from '../views/gamedata/CharacterList.vue'
 import CharacterDetail from '../views/gamedata/CharacterDetail.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
 import SelectCategory from '../views/gamedata/SelectCategory.vue'
+import WeaponCategory from '../views/gamedata/WeaponCategory.vue'
 import Category from '../views/gamedata/Category.vue'
+import ItemDetail from '../views/gamedata/ItemDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -51,9 +53,19 @@ const routes = [
     component: SelectCategory
   },
   {
+    path: '/item/category/weapon',
+    name: 'WeaponCategory',
+    component: WeaponCategory
+  },
+  {
     path: '/item/category/:category',
     name: 'Category',
     component: Category
+  },
+  {
+    path: '/item/detail/:pk',
+    name: 'ItemDetail',
+    component: ItemDetail
   },
   {
     path: '*',

@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.core import serializers
 from django.shortcuts import render
+from django.forms.models import model_to_dict
 from .models import *
 import json
 
@@ -36,5 +37,34 @@ def search_category(request,category_type):
         now['name'] = it.name
         now['kinds'] = it.kinds
         now['rank'] = it.rank
+        now['pk'] = it.pk
         data['items'].append(now)
     return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})
+
+def item_detail(request,pk):
+    item = Item.objects.get(pk=pk)
+    item = model_to_dict(item)
+    left_item_list = Item.objects.filter(material_left=pk)
+    right_item_list = Item.objects.filter(material_right=pk)
+    data = {'upper':[],'item':item}
+    for it in left_item_list:
+        now = {}
+        now['name'] = it.name
+        now['kinds'] = it.kinds
+        now['rank'] = it.rank
+        now['pk'] = it.pk
+        data['upper'].append(now)
+    for it in right_item_list:
+        now = {}
+        now['name'] = it.name
+        now['kinds'] = it.kinds
+        now['rank'] = it.rank
+        now['pk'] = it.pk
+        data['upper'].append(now)
+    return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})
+
+def only_that(request,pk):
+    item = Item.objects.get(pk=pk)
+    item = serializers.serialize('json',[item])
+    item = json.loads(item)
+    return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})

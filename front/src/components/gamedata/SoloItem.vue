@@ -1,5 +1,5 @@
 <template>
-  <div :class="now_style">
+  <div :class="now_style+' chr_window'" @click="GoPush">
     <img src="" alt="" :id="item.name+kind" style="height:40px;" v-b-tooltip.hover :title="item.name">
   </div>
 </template>
@@ -25,6 +25,9 @@ export default {
     else if (this.item.rank == 2) {this.now_style = 'rare'}
     else if (this.item.rank == 3) {this.now_style = 'hero'}
     else {this.now_style = 'legend'}
+  },
+  methods: {
+    GoPush() {this.$router.replace({name:'ItemDetail',params:{pk:this.item.pk}})}
   }
 }
 </script>

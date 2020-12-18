@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-2 m-3 chr_window" style="background-color: rgb(51,51,51); cursor: pointer;" @click="GoDetail">
+  <div class="card col-2 m-3 chr_window" style="background-color: rgb(51,51,51);" @click="GoDetail">
     <img :src="card_img" class="card-img-top" alt="..." style="height:300px;">
     <hr>
     <div class="card-body">
@@ -48,6 +48,7 @@ export default {
   -ms-transition:.3s;
   -o-transition:.3s;
   transition:.3s;
+  cursor: pointer;
 }
 
 .chr_window:hover {
