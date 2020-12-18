@@ -17,7 +17,7 @@
       </div>
       <form class="col-12 my-2" @submit.prevent="SearchHistory">
         <input type="text" style="width: 90%; background-color: rgb(206,144,60); padding: 0 10px 0 10px; margin-right: 5px;" v-model="user_name" placeholder="아이디를 검색해보세요.">
-        <img :src="require('../../assets/image/assets/button-search-01-on.png')" style="width: 9%;">
+        <img :src="require('../../assets/image/assets/button-search-01-on.png')" style="width: 9%; cursor:pointer;" @click="SearchHistory">
       </form>
       <div class="col-12">
         <div v-show="notYet" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 94.5%; position: absolute;">
@@ -105,6 +105,9 @@ export default {
       for(var i=0;i<ModeButtons.length;i++) {
         if(i==n){ModeButtons[i].className = 'mode_text mx-3 clicked_mode'}
         else {ModeButtons[i].className = 'mode_text mx-3'}
+      }
+      if(this.user_name != null) {
+        this.SearchHistory()
       }
     },
     ShowDetail(n) {

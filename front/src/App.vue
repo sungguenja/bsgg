@@ -11,7 +11,7 @@
           <span class="nav_button_text" @click="GoPush(4)">Contact</span>
         </div>
         <form @submit.prevent="Search" class="my-2" style="width: 20%;">
-          <input type="text" style="width: 80%; border-radius: 3% 0 0 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="검색을 해보아요">
+          <input type="text" style="width: 80%; border-radius: 3% 0 0 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="여긴 아직 미구현입니다">
           <img :src="require('./assets/image/assets/button-search-01-on.png')" style="width: 20%;">
         </form>
       </div>

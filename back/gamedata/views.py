@@ -67,4 +67,11 @@ def only_that(request,pk):
     item = Item.objects.get(pk=pk)
     item = serializers.serialize('json',[item])
     item = json.loads(item)
+    get_area = AreaItem.objects.filter(item_id=pk)
+    get_area = serializers.serialize('json',get_area)
+    get_area = json.loads(get_area)
+    item[0]['area'] = []
+    for i in get_area:
+        area = Area.objects.get(pk=i['fields']['area_id'])
+        item[0]['area'].append({'name':area.name,'quantity':i['fields']['quantity']})
     return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})

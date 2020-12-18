@@ -1,13 +1,13 @@
 <template>
   <div class="m-2">
-    <img :src="img_src" alt="" style="width: 80px;" :class="now_style+' chr_window'" @click="GoPush" v-b-tooltip.hover :title="item.name">
+    <img :src="img_src" alt="" style="width: 80px;" :class="now_style+' chr_window'" @click="GoPush" v-b-tooltip.hover :title="area">
+    <p class="text-light">{{item.name}}</p>
     <div v-if="left!=null | right!=null">
-      <div class="d-flex justify-content-center">
-        <div v-if="left != null">
+      <div class="d-flex justify-content-center" v-if="left != null | right != null">
+        <div v-if="left != null" style="border:solid;">
           <Fusion :id="left" :key="left"></Fusion>
         </div>
-        <hr style="width: 15%;">
-        <div v-if="right != null">
+        <div v-if="right != null" style="border:solid;">
           <Fusion :id="right" :key="right"></Fusion>
         </div>
       </div>
@@ -28,7 +28,8 @@ export default {
       right: null,
       cate: [0,'단검','양손검','도끼','쌍검','권총','돌격 소총','저격총','레이피어','창','망치','방망이','투척','암기','활','석궁','글러브','톤파','기타','쌍절곤','채찍','머리','옷','팔','다리','장식','음식','음료','설치','재료'],
       img_src: null,
-      now_style: null
+      now_style: null,
+      area: ''
     }
   },
   props: {
@@ -50,6 +51,9 @@ export default {
       })
       .then(res => {
         this.item = res.data[0].fields
+        for(var i=0; i<res.data[0].area.length; i++) {
+          this.area += `\n ${res.data[0].area[i].name} : ${res.data[0].area[i].quantity}개`
+        }
         if(this.item.material_left != 0){this.left = this.item.material_left}
         else {this.left = null}
         if(this.item.material_right != 0){this.right = this.item.material_right}

@@ -2,12 +2,12 @@
   <div class="container d-flex justify-content-around">
     <b-card
       title="Card Title"
-      img-src="https://picsum.photos/600/300/?image=25"
+      img-src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/weapon.png"
       img-alt="Image"
       img-top
       tag="article"
       style="max-width: 20rem; cursor: pointer;"
-      class="mx-2"
+      class="mx-2 chr_window"
       @click="GoPush(0)"
     >
       <b-card-text>
@@ -16,12 +16,12 @@
     </b-card>
     <b-card
       title="Card Title"
-      img-src="https://picsum.photos/600/300/?image=25"
+      img-src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/cloth.png"
       img-alt="Image"
       img-top
       tag="article"
       style="max-width: 20rem; cursor: pointer;"
-      class="mx-2"
+      class="mx-2 chr_window"
       @click="GoPush(1)"
     >
       <b-card-text>
@@ -30,12 +30,12 @@
     </b-card>
     <b-card
       title="Card Title"
-      img-src="https://picsum.photos/600/300/?image=25"
+      img-src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/etc.jpg"
       img-alt="Image"
       img-top
       tag="article"
       style="max-width: 20rem; cursor: pointer;"
-      class="mx-2"
+      class="mx-2 chr_window"
       @click="GoPush(2)"
     >
       <b-card-text>
