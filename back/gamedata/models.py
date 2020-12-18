@@ -4,10 +4,17 @@ from django.db import models
 class Area(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 class Animal(models.Model):
     name = models.CharField(max_length=255)
     first_appear = models.IntegerField(default=60)
     skill = models.TextField()
+
+    def __str__(self):
+        return self.name
+
 
 class Item(models.Model):
     name = models.CharField(max_length=255)
@@ -17,6 +24,10 @@ class Item(models.Model):
     stats = models.TextField()
     material_left = models.IntegerField()
     material_right = models.IntegerField()
+
+    def __str__(self):
+        return '{0} {1}'.format(self.name, self.pk)
+
 
 class AreaItem(models.Model):
     item_id = models.ForeignKey(Item,on_delete=models.CASCADE)
