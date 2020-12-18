@@ -17,11 +17,11 @@
           <div class="d-flex" style="background-color: rgb(51,51,51);">
             <div>
               <p>모스트 플레이</p>
-              <MostPlay v-for="(match,i) in most_play" :match="match" :key="i"></MostPlay>
+              <MostPlay v-for="(match,i) in most_play" :match="match" :key="i+match.chr_name"></MostPlay>
             </div>
             <div>
               <p>평균 순위가 가장 높은 캐릭</p>
-              <HighRank v-for="(match,i) in most_rank" :match="match" :key="i"></HighRank>
+              <HighRank v-for="(match,i) in most_rank" :match="match" :key="match.chr_name+i"></HighRank>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
               </div>
             </div>
             <div class="col-9">
-              <RecentMatch v-for="(match,i) in recent_match" :match="match" :key="i" :pk="i" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
+              <RecentMatch v-for="(match,i) in recent_match" :match="match" :key="i" :pk="match.chr_name+i+match.kill_cnt" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
             </div>
           </div>
         </div>

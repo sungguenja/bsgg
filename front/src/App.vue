@@ -7,11 +7,12 @@
           <span class="nav_button_text" @click="GoPush(0)">전적 검색</span>
           <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
           <span class="nav_button_text" @click="GoPush(3)">아이템 정보</span>
-          <span class="nav_button_text" @click="GoPush(3)">공략</span>
-          <span class="nav_button_text" @click="GoPush(3)">Contact</span>
+          <span class="nav_button_text" @click="GoPush(4)">공략</span>
+          <span class="nav_button_text" @click="GoPush(4)">Contact</span>
         </div>
-        <form @submit.prevent="Search" class="my-2" style="width: 20%; margin-right: 4%;">
-          <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="검색을 해보아요">
+        <form @submit.prevent="Search" class="my-2" style="width: 20%;">
+          <input type="text" style="width: 80%; border-radius: 3% 0 0 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="검색을 해보아요">
+          <img :src="require('./assets/image/assets/button-search-01-on.png')" style="width: 20%;">
         </form>
       </div>
     </div>
@@ -24,7 +25,7 @@ export default {
   data() {
     return {
       backgroundImg: require('./assets/image/assets/bg.jpg'),
-      can_go: ['SearchHistory','CharacterList','Home','NotFoundPage'],
+      can_go: ['SearchHistory','CharacterList','Home','SelectCategory','NotFoundPage'],
       user_height: screen.height,
       search_text: null,
     }
@@ -45,7 +46,7 @@ export default {
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'SeoulNamsanM', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

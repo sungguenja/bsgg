@@ -27,3 +27,14 @@ def search_item(request,item_name):
     item = Item.objects.get(name=item_name)
     item = {'name':item.name,'kind':item.rank,'stat':json.loads(item.stats)}
     return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})
+
+def search_category(request,category_type):
+    total_item = Item.objects.filter(kinds=category_type)
+    data = {'items':[]}
+    for it in total_item:
+        now = {}
+        now['name'] = it.name
+        now['kinds'] = it.kinds
+        now['rank'] = it.rank
+        data['items'].append(now)
+    return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})

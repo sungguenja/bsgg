@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <CharacterCard v-for="(character,i) in chr_list" :key="i" :character_inform="character"></CharacterCard>
+      <CharacterCard v-for="(character,i) in chr_list" :key="character.name+i" :character_inform="character"></CharacterCard>
     </div>
   </div>
 </template>

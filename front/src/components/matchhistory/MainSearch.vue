@@ -16,7 +16,8 @@
         </div>
       </div>
       <form class="col-12 my-2" @submit.prevent="SearchHistory">
-        <input type="text" style="width: 100%; border-radius: 3% 3% 3% 3% / 50% 50% 50% 50%; background-color: rgb(206,144,60); padding: 0 10px 0 10px;" v-model="user_name" placeholder="아이디를 검색해보세요.">
+        <input type="text" style="width: 90%; background-color: rgb(206,144,60); padding: 0 10px 0 10px; margin-right: 5px;" v-model="user_name" placeholder="아이디를 검색해보세요.">
+        <img :src="require('../../assets/image/assets/button-search-01-on.png')" style="width: 9%;">
       </form>
       <div class="col-12">
         <div v-show="notYet" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 94.5%; position: absolute;">

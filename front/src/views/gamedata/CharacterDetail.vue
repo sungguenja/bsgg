@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="col-4 my-3">
-            <h2 class="text-light">사용 가능 무기</h2>
+            <h3 class="text-light">사용 가능 무기</h3>
             <a v-for="(weapon,i) in weapons" :key="i" class="m-3">
               <img :src="weaponthumbnail[i]" :id="'weapon'+i" style="height:40px;">
               <b-tooltip :target="'weapon'+i" triggers="hover" id="art">
@@ -50,7 +50,7 @@
         <div class="row">
           <hr class="col-12">
           <div class="col-8">
-            <SkillWindow v-for="(skill,i) in skills" :key="i" :pk="skill.pk" :name="skill.fields.name" :stat="JSON.parse(skill.fields.stats)" :detail="skill.fields.detail" :basic="skill.fields.is_basic" :button="skill.fields.button" :chname="stats.name"></SkillWindow>
+            <SkillWindow v-for="(skill,i) in skills" :key="skill.name+i" :pk="skill.pk" :name="skill.fields.name" :stat="JSON.parse(skill.fields.stats)" :detail="skill.fields.detail" :basic="skill.fields.is_basic" :button="skill.fields.button" :chname="stats.name"></SkillWindow>
           </div>
           <div class="col-4">
             <div>
@@ -118,6 +118,28 @@
                 </tr>
               </tbody>
             </table>
+            <h3 class="text-light">모드별 변동</h3>
+            <table class="table table-secondary table-hover" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th scope="col">모드</th>
+                  <th scope="col">받는 데미지</th>
+                  <th scope="col">주는 데미지</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">듀오</th>
+                  <td>{{100+ampli[0].fields.damage_taken}}%</td>
+                  <td>{{100+ampli[0].fields.damage_done}}%</td>
+                </tr>
+                <tr>
+                  <th scope="row">스쿼드</th>
+                  <td>{{100+ampli[1].fields.damage_taken}}%</td>
+                  <td>{{100+ampli[1].fields.damage_done}}%</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -159,7 +181,8 @@ export default {
         text: '',
         thimbnail: null
       },
-      weaponthumbnail: []
+      weaponthumbnail: [],
+      ampli: [],
     }
   },
   created() {
@@ -177,6 +200,7 @@ export default {
         this.skills = res.data.skills
         this.weapons = res.data.weapons
         this.chr_thumbnail = IMG_URL + `소형/${this.stats.name}.png`
+        this.ampli = res.data.ampli
         var storage = firebase.storage().ref(`캐릭터/소형/${this.stats.name}.png`)
         for(var i=0;i<this.skills.length;i++) {
           if(this.skills[i].fields.button == 'Q') {

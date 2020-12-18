@@ -6,6 +6,8 @@ import MatchHistory from '../views/matchhistory/MatchHistory.vue'
 import CharacterList from '../views/gamedata/CharacterList.vue'
 import CharacterDetail from '../views/gamedata/CharacterDetail.vue'
 import NotFoundPage from '../views/NotFoundPage.vue'
+import SelectCategory from '../views/gamedata/SelectCategory.vue'
+import Category from '../views/gamedata/Category.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +44,16 @@ const routes = [
     path: '/characters/:pk',
     name: 'CharacterDetail',
     component: CharacterDetail
+  },
+  {
+    path: '/item/category',
+    name: 'SelectCategory',
+    component: SelectCategory
+  },
+  {
+    path: '/item/category/:category',
+    name: 'Category',
+    component: Category
   },
   {
     path: '*',
