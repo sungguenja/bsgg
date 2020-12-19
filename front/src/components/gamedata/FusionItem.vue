@@ -51,6 +51,7 @@ export default {
       })
       .then(res => {
         this.item = res.data[0].fields
+        this.area = ''
         for(var i=0; i<res.data[0].area.length; i++) {
           this.area += `\n ${res.data[0].area[i].name} : ${res.data[0].area[i].quantity}개`
         }
