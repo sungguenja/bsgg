@@ -75,3 +75,36 @@ def only_that(request,pk):
         area = Area.objects.get(pk=i['fields']['area_id'])
         item[0]['area'].append({'name':area.name,'quantity':i['fields']['quantity']})
     return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})
+
+def all_area(request,pk):
+    data = []
+    if pk == 0:
+        area_data = Area.objects.all()
+        for i in range(len(area_data)):
+            now = {}
+            now['pk'] = area_data[i].pk
+            now['name'] = area_data[i].name
+            data.append(now)
+    else:
+        data = {}
+        area_data = Area.objects.get(pk=pk)
+        item_data = AreaItem.objects.filter(area_id=pk)
+        animal_data = AreaAnimal.objects.filter(area_id=pk)
+        data['pk'] = area_data.pk
+        data['name'] = area_data.name
+        data['items'] = []
+        for i in item_data:
+            now = {}
+            now['name'] = i.item_id.name
+            now['pk'] = i.item_id.pk
+            now['quantity'] = i.quantity
+            now['kinds'] = i.item_id.kinds
+            data['items'].append(now)
+        data['animal'] = []
+        for j in animal_data:
+            now = {}
+            now['name'] = j.animal_id.name
+            now['pk'] = j.animal_id.pk
+            now['respon'] = j.respon_amount
+            data['animal'].append(now)
+    return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})

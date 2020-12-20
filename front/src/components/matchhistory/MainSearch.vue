@@ -5,8 +5,8 @@
         <div class="d-flex">
           <span class="text-light search_text">전적 검색</span>
           <div style="float: left;">
-            <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer; float:left;" @click="SearchHistory"><br>
-            <span class="text-light ml-2" style="float: left; font-size: 12px;">최근 전적 갱신: {{search_time}}</span>
+            <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer; float:left; width: 100%;" @click="SearchHistory"><br>
+            <span class="text-light ml-2" style="float: left; font-size: 0.8vw;">최근 전적 갱신<br> {{search_time}}</span>
           </div>
         </div>
         <div class="d-flex justify-content-between">
@@ -29,7 +29,7 @@
         <div v-show="!notYet & isError" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 94.5%; position: absolute;">
           <h1 class="my-5 text-light">서버가 에러를 일으켰거나 <br> 없는 닉네임입니다!</h1>
         </div>
-        <table class="table table-dark">
+        <table class="table table-dark" style="font-size: 0.8vw;">
           <thead>
             <tr>
               <th scope="col">캐릭터</th>
@@ -41,7 +41,7 @@
           <tbody>
             <tr v-for="(match,index) in recent_match" :key="index" @click="ShowDetail(index)">
               <th scope="row">{{match.chr_name}}</th>
-              <td><img :src="match.weapon_img" style="height:40px"></td>
+              <td><img :src="match.weapon_img" style="width: 40%;"></td>
               <td>{{match.rank}}</td>
               <td>{{match.kill_cnt}}</td>
             </tr>
@@ -121,7 +121,7 @@ export default {
 <style>
 .search_text {
   font-family: 'SeoulNamsanB';
-  font-size: 30px;
+  font-size: 2vw;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -134,7 +134,7 @@ export default {
 
 .mode_text {
   font-family: 'SeoulNamsanB';
-  font-size: 20px;
+  font-size: 1.3vw;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

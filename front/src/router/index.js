@@ -11,6 +11,8 @@ import WeaponCategory from '../views/gamedata/WeaponCategory.vue'
 import Category from '../views/gamedata/Category.vue'
 import ItemDetail from '../views/gamedata/ItemDetail.vue'
 import News from '../views/News.vue'
+import MatTest from '../views/gamedata/MapList.vue'
+import MapDetail from '../views/gamedata/MapDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -72,6 +74,16 @@ const routes = [
     path: '/news',
     name: 'News',
     component: News
+  },
+  {
+    path: '/mapdata',
+    name: 'mapdata',
+    component: MatTest
+  },
+  {
+    path: '/mapdata/:pk',
+    name: 'MapDetail',
+    component: MapDetail
   },
   {
     path: '/notfound',

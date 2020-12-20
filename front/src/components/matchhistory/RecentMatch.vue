@@ -16,10 +16,10 @@
       </div>
       <div class="col-12">
         <div class="my-3 d-flex">
-          <div class="d-flex">
-            <div :id="'we'+pk" :class="weapon_img"><img :src="match.weapon_img" style="width: 100%;" @click="GoDetail(0)"></div>
-            <div :id="'cl'+pk" :class="cloth_img"><img :src="match.cloth_img" style="width: 100%;" @click="GoDetail(1)"></div>
-            <div :id="'he'+pk" :class="head_img"><img :src="match.head_img" style="width: 100%;" @click="GoDetail(2)"></div>
+          <div class="d-flex" style="width:50%;">
+            <div :id="'we'+pk" :class="weapon_img"><img :src="match.weapon_img" style="width: 100%; height:100%;" @click="GoDetail(0)"></div>
+            <div :id="'cl'+pk" :class="cloth_img"><img :src="match.cloth_img" style="width: 100%; height: 100%;" @click="GoDetail(1)"></div>
+            <div :id="'he'+pk" :class="head_img"><img :src="match.head_img" style="width: 100%; height: 100%;" @click="GoDetail(2)"></div>
             <b-tooltip :target="'we'+pk" triggers="hover" id="wet">
               <a v-html="weapon_text"></a>
             </b-tooltip>
@@ -31,10 +31,10 @@
             </b-tooltip>
           </div>
           <br>
-          <div class="d-flex">
-            <div :id="'ar'+pk" :class="arm_img"><img :src="match.arm_img" style="width: 100%;" @click="GoDetail(3)"></div>
-            <div :id="'le'+pk" :class="leg_img"><img :src="match.leg_img" style="width: 100%;" @click="GoDetail(4)"></div>
-            <div :id="'ac'+pk" :class="accessory_img"><img :src="match.accessory_img" style="width: 100%;" @click="GoDetail(5)"></div>
+          <div class="d-flex" style="width:50%;">
+            <div :id="'ar'+pk" :class="arm_img"><img :src="match.arm_img" style="width: 100%; height: 100%" @click="GoDetail(3)"></div>
+            <div :id="'le'+pk" :class="leg_img"><img :src="match.leg_img" style="width: 100%; height: 100%" @click="GoDetail(4)"></div>
+            <div :id="'ac'+pk" :class="accessory_img"><img :src="match.accessory_img" style="width: 100%; height: 100%" @click="GoDetail(5)"></div>
             <b-tooltip :target="'ar'+pk" triggers="hover" id="art">
               <a v-html="arm_text"></a>
             </b-tooltip>
@@ -229,40 +229,40 @@ export default {
 .noraml {
   border: solid #808080;
   border-radius: 5px;
-  height: 45px;
-  width: 72.12px;
+  height: 100%;
+  width: 30%;
   cursor: pointer;
 }
 
 .advanced {
   border: solid #3eb489;
   border-radius: 5px;
-  height: 45px;
-  width: 72.12px;
+  height: 100%;
+  width: 30%;
   cursor: pointer;
 }
 
 .rare {
   border: solid #00498c;
   border-radius: 5px;
-  height: 45px;
-  width: 72.12px;
+  height: 100%;
+  width: 30%;
   cursor: pointer;
 }
 
 .hero {
   border: solid #AC58FA;
   border-radius: 5px;
-  height: 45px;
-  width: 72.12px;
+  height: 100%;
+  width: 30%;
   cursor: pointer;
 }
 
 .legend {
   border: solid #ffd700;
   border-radius: 5px;
-  height: 45px;
-  width: 72.12px;
+  height: 100%;
+  width: 30%;
   cursor: pointer;
 }
 

@@ -6,7 +6,7 @@
           <MainSearch @clickshow="ShowDetail"></MainSearch>
         </div>
         <div class="col-6 py-3"> 
-          <h2 class="text-light">블서 뉴스</h2>
+          <b class="text-light" style="font-size: 1.8vw;">블서 뉴스</b>
           <b-carousel
             id="carousel-1"
             v-model="slide"
@@ -21,12 +21,12 @@
             @sliding-end="onSlideEnd"
           >
             <b-carousel-slide v-for="(nownews,index) in News" :key="index" :img-src="nownews.url" style="height:303px;">
-              <h1 @click="OpenNews(index)" style="cursor:pointer;">{{nownews.title}}</h1>
+              <b @click="OpenNews(index)" style="cursor:pointer; font-size: 2vw;">{{nownews.title}}</b>
             </b-carousel-slide>
           </b-carousel>
           <img v-for="(nownews,index) in News" :key="nownews.title" :src="nownews.url" @click="slide=index" class="car_little col-3 my-1" style="height:59px;">
           <div class="py-3">
-            <h1 v-show="!isClick" class="text-light">전적 클릭하시면 <br> 세부정보를 보여드립니다</h1>
+            <b v-show="!isClick" class="text-light" style="font-size: 2.2vw;">전적 클릭하시면 <br> 세부정보를 보여드립니다</b>
             <div v-show="isClick">
               <div class="col-12 d-flex justify-content-between">
                 <img src="" alt="" id="click_chr">
