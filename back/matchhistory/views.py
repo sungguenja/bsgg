@@ -114,8 +114,8 @@ def searchhistory(request,user_name,season,team_mode):
     else:
         return JsonResponse({'굳이 이렇게 오시나요':request.method})
     
-def steam(request):
-    response = requests.get('https://api.steampowered.com/ISteamNews/GetNewsForApp/v2?appid=1049590&count=4').json()
+def steam(request,news_cnt):
+    response = requests.get('https://api.steampowered.com/ISteamNews/GetNewsForApp/v2?appid=1049590&count={0}'.format(news_cnt)).json()
     response = response['appnews']['newsitems']
     answer = {'response':[]}
     for i in range(len(response)):

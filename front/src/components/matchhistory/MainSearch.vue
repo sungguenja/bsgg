@@ -6,7 +6,7 @@
           <span class="text-light search_text">전적 검색</span>
           <div style="float: left;">
             <img :src="require('../../assets/image/assets/button-refresh-on.png')" style="cursor: pointer; float:left;" @click="SearchHistory"><br>
-            <span class="text-light ml-2" style="float: left;">최근 전적 갱신<br>{{search_time}}</span>
+            <span class="text-light ml-2" style="float: left; font-size: 12px;">최근 전적 갱신: {{search_time}}</span>
           </div>
         </div>
         <div class="d-flex justify-content-between">
@@ -16,7 +16,7 @@
         </div>
       </div>
       <form class="col-12 my-2" @submit.prevent="SearchHistory">
-        <input type="text" style="width: 90%; background-color: rgb(206,144,60); padding: 0 10px 0 10px; margin-right: 5px;" v-model="user_name" placeholder="아이디를 검색해보세요.">
+        <input type="text" style="width: 90%; background-color: rgb(206,144,60); padding: 0 10px 0 10px; margin-right: 5px;" v-model="user_name" placeholder="아이디를 검색해보세요." class="search_bar">
         <img :src="require('../../assets/image/assets/button-search-01-on.png')" style="width: 9%; cursor:pointer;" @click="SearchHistory">
       </form>
       <div class="col-12">
@@ -121,7 +121,7 @@ export default {
 <style>
 .search_text {
   font-family: 'SeoulNamsanB';
-  font-size: 3vh;
+  font-size: 30px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -134,7 +134,7 @@ export default {
 
 .mode_text {
   font-family: 'SeoulNamsanB';
-  font-size: 3vh;
+  font-size: 20px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

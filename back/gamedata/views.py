@@ -26,7 +26,7 @@ def search_item(request,item_name):
     elif item_name == '운명의꽃':
         item_name = '운명의 꽃'
     item = Item.objects.get(name=item_name)
-    item = {'name':item.name,'kind':item.rank,'stat':json.loads(item.stats)}
+    item = {'name':item.name,'kind':item.rank,'stat':json.loads(item.stats),'pk':item.pk}
     return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})
 
 def search_category(request,category_type):

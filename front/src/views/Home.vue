@@ -16,7 +16,7 @@
             background="#ababab"
             img-width="1024"
             img-height="480"
-            style="text-shadow: 1px 1px 2px #333;"
+            style="text-shadow: 3px 3px 3px black;"
             @sliding-start="onSlideStart"
             @sliding-end="onSlideEnd"
           >
@@ -35,7 +35,7 @@
                 </div>
               </div>
               <div class="col-12 d-flex" id="click_item">
-
+                <RecentMatch :match="ClickedMatch" :pk="pkpk" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
               </div>
             </div>
           </div>
@@ -49,8 +49,9 @@
 // @ is an alias to /src
 import Axios from 'axios'
 import MainSearch from '../components/matchhistory/MainSearch.vue'
+import RecentMatch from '../components/matchhistory/RecentMatch.vue'
 const SERVER_URL = `http://${window.location.hostname}:8000/`
-const IMG_URL = process.env.VUE_APP_IMG_GIT
+// const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   name: 'Home',
   data() {
@@ -59,6 +60,8 @@ export default {
       sliding: null,
       News: [],
       isClick: false,
+      ClickedMatch: {},
+      pkpk: 'aksdfkjdnn'
     }
   },
   methods: {
@@ -74,21 +77,24 @@ export default {
       window.open(this.News[n].click,'_blank')
     },
     ShowDetail(value) {
+      this.ClickedMatch = value
+      this.pkpk = this.slide+value.chr_name+value.level+value.rank
       this.isClick = true
-      var selectWindow = document.getElementById('click_chr')
-      selectWindow.src = `${IMG_URL}소형/${value.chr_name}.png`
-      selectWindow = document.getElementById('click_name')
-      selectWindow.innerText = value.chr_name
-      selectWindow = document.getElementById('click_stat')
-      selectWindow.innerHTML = `<b class="text-light">순위:${value.rank}위</b><br><b class="text-light">사냥수:${value.animal_cnt}</b><br><b class="text-light">킬수:${value.kill_cnt}</b>`
-      selectWindow = document.getElementById('click_item')
-      selectWindow.innerHTML = `<img src="${value.weapon_img}" style="height:40px;"> <img src="${value.cloth_img}" style="height:40px;"> <img src="${value.head_img}" style="height:40px;"> <img src="${value.arm_img}" style="height:40px;"> <img src="${value.leg_img}" style="height:40px;"> <img src="${value.accessory_img}" style="height:40px;">`
+      // console.log(value)
+      // var selectWindow = document.getElementById('click_chr')
+      // selectWindow.src = `${IMG_URL}소형/${value.chr_name}.png`
+      // selectWindow = document.getElementById('click_name')
+      // selectWindow.innerText = value.chr_name
+      // selectWindow = document.getElementById('click_stat')
+      // selectWindow.innerHTML = `<b class="text-light">순위:${value.rank}위</b><br><b class="text-light">사냥수:${value.animal_cnt}</b><br><b class="text-light">킬수:${value.kill_cnt}</b>`
+      // selectWindow = document.getElementById('click_item')
+      // selectWindow.innerHTML = `<img src="${value.weapon_img}" style="height:40px;"> <img src="${value.cloth_img}" style="height:40px;"> <img src="${value.head_img}" style="height:40px;"> <img src="${value.arm_img}" style="height:40px;"> <img src="${value.leg_img}" style="height:40px;"> <img src="${value.accessory_img}" style="height:40px;">`
     }
   },
   created() {
     Axios({
       method: "GET",
-      url: SERVER_URL+'matchhistory/steam/'
+      url: SERVER_URL+'matchhistory/steam/4'
     })
     .then(res => {
       this.News = res.data.response
@@ -96,7 +102,8 @@ export default {
     .catch(err => {console.log(err)})
   },
   components: {
-    MainSearch
+    MainSearch,
+    RecentMatch
   }
 }
 </script>

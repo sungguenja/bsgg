@@ -4,14 +4,14 @@
       <img :src="require('./assets/image/assets/button-home.png')" style="width: 10%; height: 100%; cursor: pointer;" alt="" @click="GoPush(2)">
       <div :style="`width: 90%; height: 100%; background-image: url(${require('./assets/image/assets/menu-top.png')}); background-size: cover;`" class="d-flex justify-content-between">
         <div class="my-2" style="margin-left: 4%;">
-          <span class="nav_button_text" @click="GoPush(0)">전적 검색</span>
+          <span class="nav_button_text" @click="GoPush(0)">News</span>
           <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
           <span class="nav_button_text" @click="GoPush(3)">아이템 정보</span>
           <span class="nav_button_text" @click="GoPush(4)">공략</span>
           <span class="nav_button_text" @click="GoPush(4)">Contact</span>
         </div>
         <form @submit.prevent="Search" class="my-2" style="width: 20%;">
-          <input type="text" style="width: 80%; border-radius: 3% 0 0 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="여긴 아직 미구현입니다">
+          <input type="text" style="width: 80%; border-radius: 3% 0 0 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="여긴 아직 미구현입니다" class="search_bar">
           <img :src="require('./assets/image/assets/button-search-01-on.png')" style="width: 20%;">
         </form>
       </div>
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       backgroundImg: require('./assets/image/assets/bg.jpg'),
-      can_go: ['SearchHistory','CharacterList','Home','SelectCategory','NotFoundPage'],
+      can_go: ['News','CharacterList','Home','SelectCategory','NotFoundPage'],
       user_height: screen.height,
       search_text: null,
     }
@@ -91,7 +91,7 @@ export default {
   color: #bdbdbd;
   margin: 19px 81px 26px 0;
   font-family: 'SeoulNamsanM';
-  font-size: 3vh;
+  font-size: 25px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -104,5 +104,10 @@ export default {
 
 .nav_button_text:hover {
   color: orange;
+}
+
+.search_bar::placeholder {
+  color: white;
+  font-size: 13px;
 }
 </style>

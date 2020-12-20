@@ -1,9 +1,11 @@
 <template>
-  <div class="card col-2 m-3 chr_window" style="background-color: rgb(51,51,51);" @click="GoDetail">
-    <img :src="card_img" class="card-img-top" alt="..." style="height:300px;">
-    <hr>
-    <div class="card-body">
-      <p class="card-text text-light">{{character_inform.name}}</p>
+  <div class="col-3 my-3">
+    <div class="card chr_window" style="background-color: rgb(51,51,51);" @click="GoDetail">
+      <img :src="card_img" class="card-img-top" alt="..." style="height:300px;">
+      <hr>
+      <div class="card-body">
+        <p class="card-text text-light">{{character_inform.name}}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -25,9 +27,9 @@ export default {
   },
   methods: {
     ChangeImg(name) {
-      var storage = firebase.storage().ref(`캐릭터/전신/${name}_full.png`)
+      var storage = firebase.storage().ref(`캐릭터/반신/${name}_full.png`)
       storage.getDownloadURL().then(url => {this.card_img = url})
-      .catch(() => {this.card_img = IMG_URL + `전신/${name}_full.png`})
+      .catch(() => {this.card_img = IMG_URL + `반신/${name}.png`})
     },
     GoDetail() {
       this.$router.push({name:'CharacterDetail',params:{pk:this.character_inform.pk}})

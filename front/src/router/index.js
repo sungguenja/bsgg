@@ -10,6 +10,7 @@ import SelectCategory from '../views/gamedata/SelectCategory.vue'
 import WeaponCategory from '../views/gamedata/WeaponCategory.vue'
 import Category from '../views/gamedata/Category.vue'
 import ItemDetail from '../views/gamedata/ItemDetail.vue'
+import News from '../views/News.vue'
 
 Vue.use(VueRouter)
 
@@ -68,14 +69,19 @@ const routes = [
     component: ItemDetail
   },
   {
-    path: '*',
-    redirect: '/404'
+    path: '/news',
+    name: 'News',
+    component: News
   },
   {
-    path: '/404',
+    path: '/notfound',
     name: 'NotFoundPage',
     component: NotFoundPage
-  }
+  },
+  {
+    path: '*',
+    redirect: '/notfound'
+  },
 ]
 
 const router = new VueRouter({
