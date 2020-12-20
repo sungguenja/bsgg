@@ -39,7 +39,6 @@ export default {
     'Fusion': this,
   },
   mounted() {
-    console.log(IMG_URL)
     this.Detail()
   },
   methods: {

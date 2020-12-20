@@ -51,7 +51,7 @@
               </td>
               <td style="font-size: 20px; color: #ffd700;" v-if="match.rank==1"><b>{{match.rank}}</b></td>
               <td style="font-size: 20px; color: #AC58FA;" v-if="match.rank==2"><b>{{match.rank}}</b></td>
-              <td style="font-size: 20px; color: #00498c;" v-if="match.rank==3"><b>{{match.rank}}</b></td>
+              <td style="font-size: 20px; color: #3eb489;" v-if="match.rank==3"><b>{{match.rank}}</b></td>
               <td style="font-size: 20px; color: white;" v-if="match.rank>3"><b>{{match.rank}}</b></td>
               <td style="font-size: 20px;"><b>{{match.kill_cnt}}</b></td>
             </tr>

@@ -1,25 +1,27 @@
 <template>
-  <div class="container m-2 text-light" :style="rank">
-    <div class="row">
-      <div class="col-4">
-        <h3 class="my-3" :style="h1_rank">{{match.rank}} 위</h3>
+  <div class="m-2 text-light" :style="rank">
+    <div class="">
+      <div class="d-flex justify-content-around">
+        <div class="">
+          <img :src="match.chr_img" class="my-2" style="height:80px; border-radius: 70%;">
+          <br>
+          <a>{{match.chr_name}}</a>
+        </div>
+        <div class="">
+          <h3 class="my-3" :style="h1_rank">{{match.rank}} 위</h3>
+        </div>
+        <div class="">
+          <h3 class="mt-1">래밸:{{match.level}}</h3>
+          <h3>킬수:{{match.kill_cnt}}</h3>
+          <h3>사냥 수:{{match.animal_cnt}}</h3>
+        </div>
       </div>
-      <div class="col-4">
-        <img :src="match.chr_img" class="my-2" style="height:80px; border-radius: 70%;">
-        <br>
-        <a>{{match.chr_name}}</a>
-      </div>
-      <div class="col-4">
-        <h3 class="mt-1">래밸:{{match.level}}</h3>
-        <h3>킬수:{{match.kill_cnt}}</h3>
-        <h3>사냥 수:{{match.animal_cnt}}</h3>
-      </div>
-      <div class="col-12">
+      <div class="">
         <div class="my-3 d-flex">
           <div class="d-flex" style="width:50%;">
-            <div :id="'we'+pk" :class="weapon_img"><img :src="match.weapon_img" style="width: 100%; height:100%;" @click="GoDetail(0)"></div>
-            <div :id="'cl'+pk" :class="cloth_img"><img :src="match.cloth_img" style="width: 100%; height: 100%;" @click="GoDetail(1)"></div>
-            <div :id="'he'+pk" :class="head_img"><img :src="match.head_img" style="width: 100%; height: 100%;" @click="GoDetail(2)"></div>
+            <div :id="'we'+pk" :class="weapon_img"><img :src="match.weapon_img" style="width: 100%; height:100%;" @click="GoDetail(0)" v-if="match.weapon_img!=null"></div>
+            <div :id="'cl'+pk" :class="cloth_img"><img :src="match.cloth_img" style="width: 100%; height: 100%;" @click="GoDetail(1)" v-if="match.cloth_img!=null"></div>
+            <div :id="'he'+pk" :class="head_img"><img :src="match.head_img" style="width: 100%; height: 100%;" @click="GoDetail(2)" v-if="match.head_img!=null"></div>
             <b-tooltip :target="'we'+pk" triggers="hover" id="wet">
               <a v-html="weapon_text"></a>
             </b-tooltip>
@@ -32,9 +34,9 @@
           </div>
           <br>
           <div class="d-flex" style="width:50%;">
-            <div :id="'ar'+pk" :class="arm_img"><img :src="match.arm_img" style="width: 100%; height: 100%" @click="GoDetail(3)"></div>
-            <div :id="'le'+pk" :class="leg_img"><img :src="match.leg_img" style="width: 100%; height: 100%" @click="GoDetail(4)"></div>
-            <div :id="'ac'+pk" :class="accessory_img"><img :src="match.accessory_img" style="width: 100%; height: 100%" @click="GoDetail(5)"></div>
+            <div :id="'ar'+pk" :class="arm_img"><img :src="match.arm_img" style="width: 100%; height: 100%" @click="GoDetail(3)" v-if="match.arm_img!=null"></div>
+            <div :id="'le'+pk" :class="leg_img"><img :src="match.leg_img" style="width: 100%; height: 100%" @click="GoDetail(4)" v-if="match.leg_img!=null"></div>
+            <div :id="'ac'+pk" :class="accessory_img"><img :src="match.accessory_img" style="width: 100%; height: 100%" @click="GoDetail(5)" v-if="match.accessory_img!=null"></div>
             <b-tooltip :target="'ar'+pk" triggers="hover" id="art">
               <a v-html="arm_text"></a>
             </b-tooltip>
@@ -205,13 +207,13 @@ export default {
         this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700;}'
         this.h1_rank = '{color: #ffd700;}'
       } else if (this.match.rank == 2) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #7c7c7c;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #AC58FA;}'
         this.h1_rank = '{color: #7c7c7c;}'
       } else if (this.match.rank == 3) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #624637;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #3eb489;}'
         this.h1_rank = '{color: #624637;}'
       } else {
-        this.rank = '{border-radius: 30px; border-left: 1rem solid #ffffff;}'
+        this.rank = '{border-radius: 30px; border-left: 1rem solid #808080;}'
         this.h1_rank = '{color: white;}'
       }
       this.ChangeColor(this.match.arm,'ar')

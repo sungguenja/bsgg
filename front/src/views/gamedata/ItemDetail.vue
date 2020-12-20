@@ -32,6 +32,7 @@
             </tr>
           </tbody>
         </table>
+        <button class="btn btn-dark" @click="GoBack">아이템 목록으로</button>
       </div>
     </div>
     <div class="">
@@ -80,6 +81,14 @@ export default {
         this.stats = JSON.parse(this.item.item.stats)
       })
       .catch(err => {console.log(err)})
+    },
+    GoBack() {
+      if(this.item.item.kinds<=20) {
+        this.$router.push({name: 'WeaponCategory'})
+      }
+      else if(this.item.item.kinds<=25) {
+        this.$router.push({name: 'Category',params:{'category':1}})
+      } else {this.$router.push({name: 'Category',params:{'category':2}})}
     }
   },
   watch: {

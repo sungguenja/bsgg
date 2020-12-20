@@ -27,7 +27,7 @@ export default {
     else {this.now_style = 'legend'}
   },
   methods: {
-    GoPush() {this.$router.replace({name:'ItemDetail',params:{pk:this.item.pk}})}
+    GoPush() {this.$router.push({name:'ItemDetail',params:{pk:this.item.pk}})}
   }
 }
 </script>
