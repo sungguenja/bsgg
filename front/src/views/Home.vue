@@ -28,14 +28,14 @@
       <div class="py-3">
         <h1 v-show="!isClick" class="text-light">전적 클릭하시면 <br> 세부정보를 보여드립니다</h1>
         <div v-show="isClick">
-          <div class="col-12 d-flex justify-content-between">
+          <div class="d-flex justify-content-between">
             <img src="" alt="" id="click_chr">
             <h2 class="text-light" id="click_name"></h2>
             <div id="click_stat">
             </div>
           </div>
-          <div class="col-12 d-flex" id="click_item">
-            <RecentMatch :match="ClickedMatch" :pk="pkpk" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
+          <div class="d-flex" id="click_item">
+            <RecentMatch :match="ClickedMatch" :pk="pkpk" style="background-color: rgb(51,51,51); border-radius: 10px; min-width: 100%;"></RecentMatch>
           </div>
         </div>
       </div>
