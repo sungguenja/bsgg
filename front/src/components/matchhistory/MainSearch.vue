@@ -40,7 +40,7 @@
           </thead>
           <tbody>
             <tr v-for="(match,index) in recent_match" :key="index" @click="ShowDetail(index)">
-              <th scope="row">{{match.chr_name}}</th>
+              <th scope="row" style="font-size: 20px;">{{match.chr_name}}</th>
               <td>
                 <img :src="match.weapon_img" style="height: 40px;">
                 <img :src="match.cloth_img" style="height: 40px;">
@@ -49,8 +49,11 @@
                 <img :src="match.leg_img" style="height: 40px;">
                 <img :src="match.accessory_img" style="height: 40px;">
               </td>
-              <td>{{match.rank}}</td>
-              <td>{{match.kill_cnt}}</td>
+              <td style="font-size: 20px; color: #ffd700;" v-if="match.rank==1"><b>{{match.rank}}</b></td>
+              <td style="font-size: 20px; color: #AC58FA;" v-if="match.rank==2"><b>{{match.rank}}</b></td>
+              <td style="font-size: 20px; color: #00498c;" v-if="match.rank==3"><b>{{match.rank}}</b></td>
+              <td style="font-size: 20px; color: white;" v-if="match.rank>3"><b>{{match.rank}}</b></td>
+              <td style="font-size: 20px;"><b>{{match.kill_cnt}}</b></td>
             </tr>
           </tbody>
         </table>
@@ -141,7 +144,7 @@ export default {
 
 .mode_text {
   font-family: 'SeoulNamsanB';
-  font-size: 25px;
+  font-size: 38px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

@@ -10,9 +10,9 @@
         <a>{{match.chr_name}}</a>
       </div>
       <div class="col-4">
-        <p class="mt-1">래밸:{{match.level}}</p>
-        <p>킬수:{{match.kill_cnt}}</p>
-        <p>사냥 수:{{match.animal_cnt}}</p>
+        <h3 class="mt-1">래밸:{{match.level}}</h3>
+        <h3>킬수:{{match.kill_cnt}}</h3>
+        <h3>사냥 수:{{match.animal_cnt}}</h3>
       </div>
       <div class="col-12">
         <div class="my-3 d-flex">

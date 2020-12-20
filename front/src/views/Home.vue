@@ -22,7 +22,9 @@
           <h2 @click="OpenNews(index)" style="cursor:pointer;">{{nownews.title}}</h2>
         </b-carousel-slide>
       </b-carousel>
-      <img v-for="(nownews,index) in News" :key="nownews.title" :src="nownews.url" @click="slide=index" class="car_little col-3 my-1" style="height:59px;">
+      <div>
+        <img v-for="(nownews,index) in News" :key="nownews.title" :src="nownews.url" @click="slide=index" class="car_little m-3" style="height:75px; width: 20%;">
+      </div>
       <div class="py-3">
         <h1 v-show="!isClick" class="text-light">전적 클릭하시면 <br> 세부정보를 보여드립니다</h1>
         <div v-show="isClick">
