@@ -210,7 +210,7 @@ export default {
         this.rank = '{border-radius: 10%; border-left: 1rem solid #AC58FA;}'
         this.h1_rank = '{color: #7c7c7c;}'
       } else if (this.match.rank == 3) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #3eb489;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #00498c;}'
         this.h1_rank = '{color: #624637;}'
       } else {
         this.rank = '{border-radius: 30px; border-left: 1rem solid #808080;}'
