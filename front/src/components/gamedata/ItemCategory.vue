@@ -1,12 +1,10 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-6 row" style="word-break: normal;">
-        <SoloItem v-for="(item,index) in items" :key="item.name + index" :item="item" :kind="name" class="m-2"></SoloItem>
-      </div>
-      <div class="col-6">
-        <h2 class="text-light">{{name}}</h2>
-      </div>
+  <div class="d-flex" style="margin-left: 200px; margin-bottom: 10px;">
+    <div class="col-6 row" style="word-break: normal;">
+      <SoloItem v-for="(item,index) in items" :key="item.name + index" :item="item" :kind="name"  style="height: 66px; width: 120px;" class="m-2"></SoloItem>
+    </div>
+    <div class="col-6">
+      <h2 class="text-light">{{name}}</h2>
     </div>
     <hr>
   </div>

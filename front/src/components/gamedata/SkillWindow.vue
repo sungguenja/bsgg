@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="row">
+    <div class="" style="width: 100%;">
     <table class="table table-secondary table-hover mb-3">
       <thead>
         <tr>

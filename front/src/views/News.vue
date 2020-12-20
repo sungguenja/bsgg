@@ -1,8 +1,6 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <NewsComponent v-for="(ne, index) in News" :key="index+ne.title" :ne="ne"></NewsComponent>
-    </div>
+  <div >
+    <NewsComponent v-for="(ne, index) in News" :key="index+ne.title" :ne="ne"></NewsComponent>
   </div>
 </template>
 

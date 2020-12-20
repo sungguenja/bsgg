@@ -1,10 +1,10 @@
 <template>
-  <div id="app" :style="`background-image: url( ${backgroundImg}); min-height:`+user_height+'px; background-repeat: repeat;'">
+  <div id="app" :style="`background-image: url( ${backgroundImg}); min-width:1900px; min-height: ${user_height}px; background-repeat: repeat;'`">
     <div class="d-flex" style="height: 6%;">
-      <img :src="require('./assets/image/assets/button-home.png')" style="width: 10%; cursor: pointer;" alt="" @click="GoPush(2)">
-      <img :src="require('./assets/image/assets/menu-top.png')" style="position: absolute; left:10%; z-index: 0; height: 5%; width: 90%;" alt="">
+      <img :src="require('./assets/image/assets/button-home.png')" style="cursor: pointer;" alt="" @click="GoPush(2)">
+      <img :src="require('./assets/image/assets/menu-top.png')" style="position: absolute; left: 235px; z-index: 0; overflow: auto;" alt="">
       <div style="width: 90%; height: 100%;" class="d-flex justify-content-between">
-        <div class="my-2 d-flex justify-content-around" style="margin-left: 4%; width: 40%; z-index: 1;">
+        <div class="my-3 d-flex justify-content-around" style="margin-left: 4%; width: 40%; z-index: 1;">
           <span class="nav_button_text" @click="GoPush(0)">News</span>
           <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
           <span class="nav_button_text" @click="GoPush(3)">게임 정보</span>
@@ -18,7 +18,9 @@
         </form>
       </div>
     </div>
-    <router-view class="py-2"/>
+    <div class="ml-5">
+      <router-view class="py-2"/>
+    </div>
   </div>
 </template>
 
@@ -53,6 +55,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+#app::after {
+  background-repeat: repeat;
 }
 
 .menu_image_home {
@@ -91,7 +97,7 @@ export default {
 .nav_button_text {
   color: #bdbdbd;
   font-family: 'SeoulNamsanM';
-  font-size: 1.2vw;
+  font-size: 25px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

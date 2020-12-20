@@ -1,10 +1,10 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
+  <div class="" style="margin-left: 50px;">
+    <div class="d-flex">
+      <div class="" style="width: 30%; margin-right: 100px;">
         <Fusion :id="pk"></Fusion>
       </div>
-      <div class="offset-2 col-4">
+      <div class="">
         <table class="table table-secondary table-hover">
           <tbody>
             <tr>
@@ -33,11 +33,11 @@
           </tbody>
         </table>
       </div>
-      <div class="col-12">
-        <b class="text-light">상위템</b>
-        <div class="d-flex">
-          <SoloItem v-for="(item,index) in item.upper" :key="item.name + index" :item="item" :kind="cate[item.kinds]" class="m-2"></SoloItem>
-        </div>
+    </div>
+    <div class="">
+      <b class="text-light" style="float: left;">상위템</b>
+      <div class="d-flex" style="float: left;">
+        <SoloItem v-for="(item,index) in item.upper" :key="item.name + index" :item="item" :kind="cate[item.kinds]" class="m-2" style="float: left; height: 66px; width: 120px;"></SoloItem>
       </div>
     </div>
   </div>

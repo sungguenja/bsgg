@@ -1,11 +1,14 @@
 <template>
-  <div class="container">
-    <h2 class="text-light">{{name}}</h2>
-    <div class="row">
-      <div class="col-6 row" style="word-break: normal;">
-        <SoloItem v-for="(item,index) in items" :key="item.name + index" :item="item" :kind="name" class="m-2"></SoloItem>
+  <div style="margin-left: 200px;" class="py-2">
+    <div class="d-flex justify-content-start m-3">
+      <h2 class="text-light" style="margin-left: 200px;">{{name}}</h2>
+    </div>
+    <div class="d-flex">
+      <div class="d-flex flex-wrap" style="word-break: normal; width: 45%;">
+        <SoloItem v-for="(item,index) in items" :key="item.name + index" :item="item" :kind="name" style="height: 66px; width: 120px;" class="m-2"></SoloItem>
       </div>
-      <div class="col-6">
+      <div style="width: 3%;"></div> 
+      <div class="" style="width: 30%;">
         <h2 class="text-light">클릭시 아이템 상세정보 조회</h2>
         <div v-if="1<=itemcat<=20" @click="is_tab = !is_tab">
           <b class="text-light">클릭시 설명 전환</b>

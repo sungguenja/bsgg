@@ -1,6 +1,6 @@
 <template>
   <div :class="now_style+' chr_window'" @click="GoPush">
-    <img src="" alt="" :id="item.name+kind" style="height:40px;" v-b-tooltip.hover :title="item.name">
+    <img src="" alt="" :id="item.name+kind" style="height: 100%; margin: auto;" v-b-tooltip.hover :title="item.name">
   </div>
 </template>
 

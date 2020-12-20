@@ -1,14 +1,12 @@
 <template>
-  <div class="container">
-    <div class="d-flex justify-content-around">
-      <div>
-        <h2 class="text-light">맵 목록</h2>
-        <ul>
-          <li v-for="(data,index) in MapListData" :key="index+data.name+data.pk" @click="GoDetail(index+1)" style="cursor: pointer; color: white;">{{data.name}}</li>
-        </ul>
-      </div>
-      <MapComponent @clickdetail="MapClick"></MapComponent>
+  <div class="d-flex" style="margin-left: 200px;">
+    <div style="margin-right: 30px;">
+      <h2 class="text-light">맵 목록</h2>
+      <ul>
+        <li v-for="(data,index) in MapListData" :key="index+data.name+data.pk" @click="GoDetail(index+1)" style="cursor: pointer; color: white;">{{data.name}}</li>
+      </ul>
     </div>
+    <MapComponent @clickdetail="MapClick"></MapComponent>
   </div>
 </template>
 

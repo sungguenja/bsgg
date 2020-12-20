@@ -16,7 +16,7 @@
         </div>
       </div>
       <form class="col-12 my-2" @submit.prevent="SearchHistory">
-        <input type="text" style="width: 90%; background-color: rgb(206,144,60); padding: 0 10px 0 10px; margin-right: 5px;" v-model="user_name" placeholder="아이디를 검색해보세요." class="search_bar">
+        <input type="text" style="width: 90%; background-color: rgb(206,144,60); padding: 0 10px 0 10px; margin-right: 1%;" v-model="user_name" placeholder="아이디를 검색해보세요." class="search_bar">
         <img :src="require('../../assets/image/assets/button-search-01-on.png')" style="width: 9%; cursor:pointer;" @click="SearchHistory">
       </form>
       <div class="col-12">
@@ -121,7 +121,7 @@ export default {
 <style>
 .search_text {
   font-family: 'SeoulNamsanB';
-  font-size: 2vw;
+  font-size: 35px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -134,7 +134,7 @@ export default {
 
 .mode_text {
   font-family: 'SeoulNamsanB';
-  font-size: 1.3vw;
+  font-size: 25px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;

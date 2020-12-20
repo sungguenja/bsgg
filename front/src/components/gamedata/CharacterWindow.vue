@@ -1,6 +1,6 @@
 <template>
-  <div class="col-3 my-3">
-    <div class="card chr_window" style="background-color: rgb(51,51,51);" @click="GoDetail">
+  <div class="m-3">
+    <div class="card chr_window" style="background-color: rgb(51,51,51); width: 17rem;" @click="GoDetail">
       <img :src="card_img" class="card-img-top" alt="..." style="height:300px;">
       <hr>
       <div class="card-body">

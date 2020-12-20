@@ -1,16 +1,13 @@
 <template>
-  <div class="container">
+  <div class="">
     <h1 class="my-3 text-light">{{name}}</h1>
     <div class="d-flex justify-content-around">
-      <div style="width:50%;">
-        <h1 class="text-light">아이템 드랍</h1>
-        <div class="row">
-          <div class="col-3" v-for="(item,index) in items" :key="item.name+pk+index+item.quantity">
-            <a class="text-light" style="cursor: pointer;" @click="GoItem(item.pk)"><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/아이템/${cate[item.kinds]}/${item.name}.png`" alt=""><br>{{item.name}}:{{item.quantity}} 개</a>
-          </div>
+      <div style="width:30%;" class="d-flex flex-wrap">
+        <div class="" v-for="(item,index) in items" :key="item.name+pk+index+item.quantity">
+          <a class="text-light" style="cursor: pointer;" @click="GoItem(item.pk)"><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/아이템/${cate[item.kinds]}/${item.name}.png`" alt=""><br>{{item.name}}:{{item.quantity}} 개</a>
         </div>
       </div>
-      <div>
+      <div style="width: 30%;">
         <h1 class="text-light">동물 리스폰</h1>
         <table class="table table-hover">
           <thead>

@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div>
-      <div style="background-color: rgb(51,51,51);">
-      <div class="container">
-        <div class="row">
-          <div class="col-8 d-flex">
+    <div style="background-color: rgb(51,51,51); width: 98%;">
+      <div>
+        <div class="d-flex">
+          <div class="d-flex" style="margin-left: 500px;">
             <img :src="chr_thumbnail" alt="" class="m-3">
             <div>
               <h2 class="text-light mx-3 my-4 text-left">{{stats.name}}</h2>
@@ -34,7 +33,7 @@
               </div>
             </div>
           </div>
-          <div class="col-4 my-3">
+          <div class="my-3">
             <h3 class="text-light">사용 가능 무기</h3>
             <a v-for="(weapon,i) in weapons" :key="i" class="m-3">
               <img :src="weaponthumbnail[i]" :id="'weapon'+i" style="height:40px;">
@@ -45,102 +44,101 @@
           </div>
         </div>
       </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <hr class="col-12">
-          <div class="col-8">
-            <SkillWindow v-for="(skill,i) in skills" :key="skill.name+i" :pk="skill.pk" :name="skill.fields.name" :stat="JSON.parse(skill.fields.stats)" :detail="skill.fields.detail" :basic="skill.fields.is_basic" :button="skill.fields.button" :chname="stats.name"></SkillWindow>
+    </div>
+    <hr>
+    <div class="">
+      <div class="d-flex" style="margin-left: 150px;">
+        <div class="m-3" style="width: 50%;">
+          <SkillWindow v-for="(skill,i) in skills" :key="skill.name+i" :pk="skill.pk" :name="skill.fields.name" :stat="JSON.parse(skill.fields.stats)" :detail="skill.fields.detail" :basic="skill.fields.is_basic" :button="skill.fields.button" :chname="stats.name"></SkillWindow>
+        </div>
+        <div class="" style="width: 25%;">
+          <div>
+            <h1>통계 관련은 추후 제공 ㅠㅠ</h1>
+            <h1>api 생기고 구현 예정</h1>
           </div>
-          <div class="col-4">
-            <div>
-              <h1>통계 관련은 추후 제공 ㅠㅠ</h1>
-              <h1>api 생기고 구현 예정</h1>
-            </div>
-            <table class="table table-secondary table-hover" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th scope="col">능력치</th>
-                  <th scope="col">시작값</th>
-                  <th scope="col">성장값</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">공격력</th>
-                  <td>{{stats.attack}}</td>
-                  <td>{{stats.attack_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">방어력</th>
-                  <td>{{stats.shield}}</td>
-                  <td>{{stats.shield_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">체력</th>
-                  <td>{{stats.health}}</td>
-                  <td>{{stats.health_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">체력 리젠</th>
-                  <td>{{stats.health_regen}}</td>
-                  <td>{{stats.health_regen_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">스테미너</th>
-                  <td>{{stats.stamina}}</td>
-                  <td>{{stats.stamina_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">스테미나 리젠</th>
-                  <td>{{stats.stamina_regen}}</td>
-                  <td>{{stats.stamina_regen_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">공격속도</th>
-                  <td>{{stats.attack_speed}}</td>
-                  <td>{{stats.attack_speed_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">이동속도</th>
-                  <td>{{stats.moving_speed}}</td>
-                  <td>{{stats.moving_speed_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">크리티컬</th>
-                  <td>{{stats.critical}}</td>
-                  <td>{{stats.critical_growth}}</td>
-                </tr>
-                <tr>
-                  <th scope="row">시야</th>
-                  <td>{{stats.eyesight}}</td>
-                  <td>{{stats.eyesight_growth}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <h3 class="text-light">모드별 변동</h3>
-            <table class="table table-secondary table-hover" style="width: 100%;">
-              <thead>
-                <tr>
-                  <th scope="col">모드</th>
-                  <th scope="col">받는 데미지</th>
-                  <th scope="col">주는 데미지</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">듀오</th>
-                  <td>{{100+ampli[0].fields.damage_taken}}%</td>
-                  <td>{{100+ampli[0].fields.damage_done}}%</td>
-                </tr>
-                <tr>
-                  <th scope="row">스쿼드</th>
-                  <td>{{100+ampli[1].fields.damage_taken}}%</td>
-                  <td>{{100+ampli[1].fields.damage_done}}%</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <table class="table table-secondary table-hover" style="width: 100%;">
+            <thead>
+              <tr>
+                <th scope="col">능력치</th>
+                <th scope="col">시작값</th>
+                <th scope="col">성장값</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">공격력</th>
+                <td>{{stats.attack}}</td>
+                <td>{{stats.attack_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">방어력</th>
+                <td>{{stats.shield}}</td>
+                <td>{{stats.shield_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">체력</th>
+                <td>{{stats.health}}</td>
+                <td>{{stats.health_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">체력 리젠</th>
+                <td>{{stats.health_regen}}</td>
+                <td>{{stats.health_regen_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">스테미너</th>
+                <td>{{stats.stamina}}</td>
+                <td>{{stats.stamina_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">스테미나 리젠</th>
+                <td>{{stats.stamina_regen}}</td>
+                <td>{{stats.stamina_regen_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">공격속도</th>
+                <td>{{stats.attack_speed}}</td>
+                <td>{{stats.attack_speed_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">이동속도</th>
+                <td>{{stats.moving_speed}}</td>
+                <td>{{stats.moving_speed_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">크리티컬</th>
+                <td>{{stats.critical}}</td>
+                <td>{{stats.critical_growth}}</td>
+              </tr>
+              <tr>
+                <th scope="row">시야</th>
+                <td>{{stats.eyesight}}</td>
+                <td>{{stats.eyesight_growth}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3 class="text-light">모드별 변동</h3>
+          <table class="table table-secondary table-hover" style="width: 100%;">
+            <thead>
+              <tr>
+                <th scope="col">모드</th>
+                <th scope="col">받는 데미지</th>
+                <th scope="col">주는 데미지</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">듀오</th>
+                <td>{{100+ampli[0].fields.damage_taken}}%</td>
+                <td>{{100+ampli[0].fields.damage_done}}%</td>
+              </tr>
+              <tr>
+                <th scope="row">스쿼드</th>
+                <td>{{100+ampli[1].fields.damage_taken}}%</td>
+                <td>{{100+ampli[1].fields.damage_done}}%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

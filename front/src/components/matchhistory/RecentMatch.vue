@@ -229,7 +229,6 @@ export default {
 .noraml {
   border: solid #808080;
   border-radius: 5px;
-  height: 100%;
   width: 30%;
   cursor: pointer;
 }
@@ -237,7 +236,6 @@ export default {
 .advanced {
   border: solid #3eb489;
   border-radius: 5px;
-  height: 100%;
   width: 30%;
   cursor: pointer;
 }
@@ -245,7 +243,6 @@ export default {
 .rare {
   border: solid #00498c;
   border-radius: 5px;
-  height: 100%;
   width: 30%;
   cursor: pointer;
 }
@@ -253,7 +250,6 @@ export default {
 .hero {
   border: solid #AC58FA;
   border-radius: 5px;
-  height: 100%;
   width: 30%;
   cursor: pointer;
 }
@@ -261,7 +257,6 @@ export default {
 .legend {
   border: solid #ffd700;
   border-radius: 5px;
-  height: 100%;
   width: 30%;
   cursor: pointer;
 }

@@ -1,6 +1,5 @@
 <template>
-  <div class="container">
-    <div class="row d-flex justify-content-center">
+  <div class="d-flex justify-content-center">
     <b-card
       title="Card Title"
       img-src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/weapon.png"
@@ -57,7 +56,6 @@
         맵 정보
       </b-card-text>
     </b-card>
-    </div>
   </div>
 </template>
 
