@@ -13,7 +13,7 @@
 <script>
 import MapComponent from '../../components/gamedata/MapComponent.vue'
 import Axios from 'axios'
-const SERVER_URL = `${process.env.VUE_APP_BACK_HTTP}${window.location.hostname}:8000/`
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
 export default {
   data() {
     return {

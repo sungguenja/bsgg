@@ -48,7 +48,7 @@
 import Axios from 'axios'
 import SoloItem from '../../components/gamedata/SoloItem.vue'
 import Fusion from '../../components/gamedata/FusionItem.vue'
-const SERVER_URL = `${process.env.VUE_APP_BACK_HTTP}${window.location.hostname}:8000/`
+const SERVER_URL = process.env.VUE_APP_SERVER_URL
 const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   data() {
