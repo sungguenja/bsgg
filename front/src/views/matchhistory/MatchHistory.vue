@@ -51,7 +51,12 @@ import RecentMatch from '../../components/matchhistory/RecentMatch.vue'
 import MostPlay from '../../components/matchhistory/MostPlay.vue'
 import HighRank from '../../components/matchhistory/HighRank.vue'
 import Loading from '../../components/varies/Loading.vue'
-const SERVER_URL = process.env.VUE_APP_SERVER_URL
+var SERVER_URL = ''
+const check_url = window.location.hostname
+if (check_url == 'localhost') {SERVER_URL = 'http://localhost:8000/'}
+else if(check_url == 'lumia') {SERVER_URL = 'https://lumia.kr/backapi/'}
+else if(check_url == 'xn--2s2b29c91l') {SERVER_URL = 'https://xn--2s2b29c91l.kr/backapi/'}
+else if(check_url == '루미아') {SERVER_URL = 'https://루미아.kr/backapi/'}
 export default {
   data() {
     return {
