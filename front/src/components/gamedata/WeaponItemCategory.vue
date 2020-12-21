@@ -60,7 +60,7 @@
 <script>
 import Axios from 'axios'
 import SoloItem from './SoloItem.vue'
-const SERVER_URL = `http://${window.location.hostname}:8000/`
+const SERVER_URL = `${process.env.VUE_APP_BACK_HTTP}${window.location.hostname}:8000/`
 const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   data() {

@@ -51,7 +51,7 @@ import RecentMatch from '../../components/matchhistory/RecentMatch.vue'
 import MostPlay from '../../components/matchhistory/MostPlay.vue'
 import HighRank from '../../components/matchhistory/HighRank.vue'
 import Loading from '../../components/varies/Loading.vue'
-const SERVER_URL = `http://${window.location.hostname}:8000/`
+const SERVER_URL = `${process.env.VUE_APP_BACK_HTTP}${window.location.hostname}:8000/`
 export default {
   data() {
     return {
