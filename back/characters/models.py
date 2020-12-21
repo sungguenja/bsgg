@@ -34,7 +34,7 @@ class Ampli(models.Model):
     damage_done = models.FloatField(default=0)
 
     def __str__(self):
-        return self.charac + self.mode
+        return '{0} {1}'.format(self.charac.name,self.mode)
 
 class Skill(models.Model):
     charac = models.ForeignKey(Character,on_delete=models.CASCADE)
@@ -45,7 +45,7 @@ class Skill(models.Model):
     is_basic = models.CharField(max_length=255,default='basic')
 
     def __str__(self):
-        return '{0} {1}'.format(self.charac,self.name)
+        return '{0} {1}'.format(self.charac.name,self.name)
 
 class Weapon(models.Model):
     name = models.CharField(max_length=255)
