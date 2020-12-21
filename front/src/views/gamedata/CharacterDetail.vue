@@ -152,9 +152,9 @@ import SkillWindow from '../../components/gamedata/SkillWindow.vue'
 var SERVER_URL = ''
 const check_url = window.location.hostname
 if (check_url == 'localhost') {SERVER_URL = 'http://localhost:8000/'}
-else if(check_url == 'lumia') {SERVER_URL = 'https://lumia.kr/backapi/'}
-else if(check_url == 'xn--2s2b29c91l') {SERVER_URL = 'https://xn--2s2b29c91l.kr/backapi/'}
-else if(check_url == '루미아') {SERVER_URL = 'https://루미아.kr/backapi/'}
+else if(check_url == 'lumia.kr') {SERVER_URL = 'https://lumia.kr/backapi/'}
+else if(check_url == 'xn--2s2b29c91l.kr') {SERVER_URL = 'https://xn--2s2b29c91l.kr/backapi/'}
+else if(check_url == '루미아.kr') {SERVER_URL = 'https://루미아.kr/backapi/'}
 const IMG_URL = process.env.VUE_APP_IMG_GIT
 export default {
   data() {
@@ -246,7 +246,6 @@ export default {
               .catch(() => {this.passive.thimbnail = IMG_URL + `스킬/${this.stats.name}/basic_패시브.png`})
             }
           }
-          console.log(i,this.skills[i])
         }
         storage.getDownloadURL().then(url => {this.chr_thumbnail = url})
         for(var j=0; j<this.weapons.length; j++) {
