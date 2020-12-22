@@ -11,6 +11,7 @@ class Animal(models.Model):
     name = models.CharField(max_length=255)
     first_appear = models.IntegerField(default=60)
     skill = models.TextField()
+    respon_time = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

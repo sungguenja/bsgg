@@ -3,6 +3,7 @@
     <div class="">
       <div class="d-flex justify-content-around">
         <div class="">
+          <b>{{date}}</b><br>
           <img :src="match.chr_img" class="my-2" style="height:80px; border-radius: 70%;">
           <br>
           <a>{{match.chr_name}}</a>
@@ -79,7 +80,8 @@ export default {
       arm_text: null,
       leg_text: null,
       accessory_text: null,
-      pk_list: [null,null,null,null,null,null]
+      pk_list: [null,null,null,null,null,null],
+      date: null
     }
   },
   props: {
@@ -100,6 +102,7 @@ export default {
       this.rank = '{border-radius: 30px; border-left: 1rem solid #ffffff;}'
       this.h1_rank = '{color: white;}'
     }
+    this.date = this.match.date
     this.ChangeColor(this.match.arm,'ar')
     this.ChangeColor(this.match.cloth,'cl')
     this.ChangeColor(this.match.head,'he')
@@ -207,7 +210,7 @@ export default {
   },
   watch: {
     pk() {
-      console.log(this.match)
+      this.date = this.match.date
       if(this.match.rank == 1) {
         this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700;}'
         this.h1_rank = '{color: #ffd700;}'

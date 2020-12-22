@@ -1,37 +1,49 @@
 <template>
   <div class="d-flex" style="margin-left: 50px; margin-top: 30px;">
-    <table class="table table-secondary table-hover" style="width: 30%;">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">{{animal.name}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">사진</th>
-          <td><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${animal.name}.png`" alt=""></td>
-        </tr>
-        <tr>
-          <th scope="row">첫 등장 시간</th>
-          <td>{{animal.first_appear}} 초</td>
-        </tr>
-        <tr>
-          <th scope="row">스킬</th>
-          <td>
-            <b v-for="(value,key) in animal.skill" :key="key+animal.name+value"><span>{{key}} : {{value}}</span><br> </b>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div style="width: 30%;">
+      <table class="table table-secondary table-hover" >
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">{{animal.name}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">사진</th>
+            <td><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${animal.name}.png`" alt=""></td>
+          </tr>
+          <tr>
+            <th scope="row">첫 등장 시간</th>
+            <td>{{animal.first_appear}} 초</td>
+          </tr>
+          <tr>
+            <th scope="row">리젠 시간</th>
+            <td>{{animal.respon_time}} 초</td>
+          </tr>
+          <tr>
+            <th scope="row">스킬</th>
+            <td>
+              <b v-for="(value,key) in animal.skill" :key="key+animal.name+value"><span>{{key}} : {{value}}</span><br> </b>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${animal.name}_respon.png`" alt="">
+    </div>
     <div style="width: 40%;">
-      <h2 class="text-light">등장 지역</h2>
-      <b v-for="(value,index) in areas" :key="index+value.name+value.pk+value.respon"><span class="text-light" @click="GoMapDetail(value.pk)" style="cursor: pointer;">{{value.name}}: {{value.respon}}마리 리스폰</span><br> </b>
-      <hr>
-      <h2 class="text-light">드랍 아이템</h2>
-      <div class="d-flex flex-wrap">
-        <SoloItem v-for="(item,index) in items" :key="item.name + index + item.pk + item.name" :item="item" :kind="cate[item.kinds]"  style="height: 66px; width: 120px;" class="m-2"></SoloItem>
+      <div>
+        <h2 class="text-light">드랍 아이템</h2>
+        <div class="d-flex flex-wrap">
+          <a v-for="(item,index) in items" :key="item.name + index + item.pk + item.name" >
+            <SoloItem :item="item" :kind="cate[item.kinds]"  style="height: 66px; width: 120px;" class="m-2"></SoloItem>
+            <b class="text-light">{{item.name}}:{{item.percentage}}% <br>{{item.socket}}번 자리</b>
+          </a>
+        </div>
+        <h2 class="text-light">등장 지역</h2>
+        <b v-for="(value,index) in areas" :key="index+value.name+value.pk+value.respon"><span class="text-light" @click="GoMapDetail(value.pk)" style="cursor: pointer;">{{value.name}}: {{value.respon}}마리 리스폰</span><br> </b>
       </div>
+      <hr>
     </div>
   </div>
 </template>

@@ -133,6 +133,8 @@ def animal_detail(request,pk):
         now['name'] = it.item_id.name
         now['kinds'] = it.item_id.kinds
         now['rank'] = it.item_id.rank
+        now['percentage'] = it.get_percent
+        now['socket'] = it.pocket_number
         now['pk'] = it.item_id.pk
         data['items'].append(now)
     areas = AreaAnimal.objects.filter(animal_id=pk)
