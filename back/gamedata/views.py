@@ -46,7 +46,9 @@ def item_detail(request,pk):
     item = model_to_dict(item)
     left_item_list = Item.objects.filter(material_left=pk)
     right_item_list = Item.objects.filter(material_right=pk)
-    data = {'upper':[],'item':item}
+    area_list = AreaItem.objects.filter(item_id=pk)
+    animal_list = AnimalItem.objects.filter(item_id=pk)
+    data = {'upper':[],'item':item,'animal':[],'area':[]}
     for it in left_item_list:
         now = {}
         now['name'] = it.name
@@ -61,6 +63,17 @@ def item_detail(request,pk):
         now['rank'] = it.rank
         now['pk'] = it.pk
         data['upper'].append(now)
+    for it in area_list:
+        now = {}
+        now['name'] = it.area_id.name
+        now['quantity'] = it.quantity
+        now['pk'] = it.area_id.pk
+        data['area'].append(now)
+    for it in animal_list:
+        now = {}
+        now['name'] = it.animal_id.name
+        now['pk'] = it.animal_id.pk
+        data['animal'].append(now)
     return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})
 
 def only_that(request,pk):
@@ -107,4 +120,26 @@ def all_area(request,pk):
             now['pk'] = j.animal_id.pk
             now['respon'] = j.respon_amount
             data['animal'].append(now)
+    return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})
+
+def animal_detail(request,pk):
+    data = {'animal':None,'items':[],'areas':[]}
+    animal = Animal.objects.get(pk=pk)
+    animal = model_to_dict(animal)
+    data['animal'] = animal
+    items = AnimalItem.objects.filter(animal_id=pk)
+    for it in items:
+        now = {}
+        now['name'] = it.item_id.name
+        now['kinds'] = it.item_id.kinds
+        now['rank'] = it.item_id.rank
+        now['pk'] = it.item_id.pk
+        data['items'].append(now)
+    areas = AreaAnimal.objects.filter(animal_id=pk)
+    for it in areas:
+        now = {}
+        now['name'] = it.area_id.name
+        now['respon'] = it.respon_amount
+        now['pk'] = it.area_id.pk
+        data['areas'].append(now)
     return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})

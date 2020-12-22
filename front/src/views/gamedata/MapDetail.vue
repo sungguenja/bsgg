@@ -18,7 +18,7 @@
           </thead>
           <tbody>
             <tr v-for="(animal,index) in animals" :key="animal.name+pk+index+animal.respon">
-              <th scope="row"><b class="text-light"><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${animal.name}.png`" alt=""><br>{{animal.name}}</b></th>
+              <th scope="row"><b class="text-light" @click="GoAnimalDetail(animal.pk)" style="cursor: pointer;"><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${animal.name}.png`" alt=""><br>{{animal.name}}</b></th>
               <td class="text-light">{{animal.respon}}</td>
             </tr>
           </tbody>
@@ -66,6 +66,9 @@ export default {
     },
     GoItem(pk) {
       this.$router.push({name: 'ItemDetail',params:{pk:pk}})
+    },
+    GoAnimalDetail(pk) {
+      this.$router.push({name: 'AnimalDetail',params:{'pk':pk}})
     }
   }
 }

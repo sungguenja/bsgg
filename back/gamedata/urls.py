@@ -9,4 +9,5 @@ urlpatterns = [
     path('detail/<int:pk>',views.item_detail,name='item_detail'),
     path('only/<int:pk>',views.only_that,name='only_that'),
     path('area/<int:pk>',views.all_area,name='all_area'),
+    path('animal/<int:pk>',views.animal_detail,name='animal_detail'),
 ]

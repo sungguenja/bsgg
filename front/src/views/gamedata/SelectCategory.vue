@@ -1,12 +1,13 @@
 <template>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center text-light flex-wrap">
     <b-card
       title="Card Title"
       img-src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/weapon.png"
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem; cursor: pointer;"
+      style="max-width: 20rem; cursor: pointer; background-color: rgb(51,51,51); width: 17rem;"
+      
       class="m-3 chr_window col-3"
       @click="GoPush(0)"
     >
@@ -20,7 +21,8 @@
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem; cursor: pointer;"
+      style="max-width: 20rem; cursor: pointer; background-color: rgb(51,51,51); width: 17rem;"
+      
       class="m-3 chr_window col-3"
       @click="GoPush(1)"
     >
@@ -34,7 +36,8 @@
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem; cursor: pointer;"
+      style="max-width: 20rem; cursor: pointer; background-color: rgb(51,51,51); width: 17rem;"
+      
       class="m-3 chr_window col-3"
       @click="GoPush(2)"
     >
@@ -48,12 +51,28 @@
       img-alt="Image"
       img-top
       tag="article"
-      style="max-width: 20rem; cursor: pointer;"
+      style="max-width: 20rem; cursor: pointer; background-color: rgb(51,51,51); width: 17rem;"
+      img-height="300"
       class="m-3 chr_window col-3"
       @click="GoPush(3)"
     >
       <b-card-text>
         맵 정보
+      </b-card-text>
+    </b-card>
+    <b-card
+      title="Card Title"
+      img-src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/위클라인.png"
+      img-alt="Image"
+      img-top
+      tag="article"
+      style="max-width: 20rem; cursor: pointer; background-color: rgb(51,51,51); width: 17rem;"
+      img-height="300"
+      class="m-3 chr_window col-3"
+      @click="GoPush(4)"
+    >
+      <b-card-text>
+        야생동물 정보
       </b-card-text>
     </b-card>
   </div>
@@ -69,6 +88,10 @@ export default {
       }
       if(n==3) {
         this.$router.push({name: 'mapdata'})
+        return false
+      }
+      if(n==4) {
+        this.$router.push({name: 'AnimalList'})
         return false
       }
       this.$router.push({name: 'Category',params:{category:n}})

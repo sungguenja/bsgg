@@ -13,6 +13,8 @@ import ItemDetail from '../views/gamedata/ItemDetail.vue'
 import News from '../views/News.vue'
 import MatTest from '../views/gamedata/MapList.vue'
 import MapDetail from '../views/gamedata/MapDetail.vue'
+import AnimalList from '../views/gamedata/AnimalList.vue'
+import AnimalDetail from '../views/gamedata/AnimalDetail.vue'
 
 Vue.use(VueRouter)
 
@@ -84,6 +86,16 @@ const routes = [
     path: '/mapdata/:pk',
     name: 'MapDetail',
     component: MapDetail
+  },
+  {
+    path: '/animal',
+    name: 'AnimalList',
+    component: AnimalList
+  },
+  {
+    path: '/animal/:pk',
+    name: 'AnimalDetail',
+    component: AnimalDetail
   },
   {
     path: '/notfound',
