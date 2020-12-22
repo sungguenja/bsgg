@@ -2,9 +2,10 @@
   <div id="app" :style="`background-image: url( ${backgroundImg}); min-width:1900px; min-height: ${user_height}px; background-repeat: repeat;'`">
     <div class="d-flex" style="height: 6%;">
       <img :src="require('./assets/image/assets/button-home.png')" style="cursor: pointer;" alt="" @click="GoPush(2)">
-      <img :src="require('./assets/image/assets/menu-top.png')" style="position: absolute; left: 235px; z-index: 0; overflow: auto;" alt="">
+      <img :src="require('./assets/image/assets/menu-top.png')" style="position: absolute; left: 235px; z-index: 1; overflow: auto;" alt="">
+      <img :src="require('./assets/image/assets/menu-top_side.png')" style="position: absolute; top: -4px;left: 1902px; z-index: 0; overflow: auto;" v-if="BigDisplay" alt="">
       <div style="width: 90%; height: 100%;" class="d-flex justify-content-between">
-        <div class="my-3 d-flex justify-content-around" style="margin-left: 4%; width: 40%; z-index: 1;">
+        <div class="my-3 d-flex justify-content-around" style="margin-left: 4%; width: 40%; z-index: 2;">
           <span class="nav_button_text" @click="GoPush(0)">News</span>
           <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
           <span class="nav_button_text" @click="GoPush(3)">게임 정보</span>
@@ -32,10 +33,13 @@ export default {
       can_go: ['News','CharacterList','Home','SelectCategory','NotFoundPage'],
       user_height: screen.height,
       search_text: null,
+      BigDisplay: false
     }
   },
   created() {
     document.title = 'Lumia'
+    console.log(screen.width)
+    if(window.outerWidth > 2000) {this.BigDisplay = true}
   },
   methods: {
     GoPush(n) {
@@ -105,7 +109,7 @@ export default {
   letter-spacing: -1.88px;
   text-align: center;
   cursor: pointer;
-  text-shadow: 4px 4px 4px black;
+  text-shadow: 2px 2px 2px #2e2c2a;
 }
 
 .nav_button_text:hover {
