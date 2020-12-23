@@ -67,3 +67,13 @@ class UsedWeapon(models.Model):
 
     def __str__(self):
         return '{0} {1}'.format(self.charac.name,self.weapon_name.name)
+
+class RealAmpli(models.Model):
+    charac = models.ForeignKey(Character,on_delete=models.CASCADE)
+    weap = models.ForeignKey(Weapon,on_delete=models.CASCADE)
+    mode = models.CharField(max_length=100)
+    damage_taken = models.FloatField(default=0)
+    damage_done = models.FloatField(default=0)
+
+    def __str__(self):
+        return '{0} {1} {2}'.format(self.charac.name,self.mode,self.weap.name)

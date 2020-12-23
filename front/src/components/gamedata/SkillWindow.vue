@@ -24,6 +24,13 @@
           </td>
           <td>
             <img :id="name+'detail'" style="width: 50%;"><br>
+            <div v-if="chname == '엠마' && button == 'Q'">
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/엠마/advance_Q.gif"><br>
+            </div>
+            <div v-if="chname == '엠마' && button == 'R'">
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/엠마/hat_R.gif"><br>
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/엠마/rabbit_R.gif"><br>
+            </div>
             <a v-html="detailText"></a>
           </td>
         </tr>
