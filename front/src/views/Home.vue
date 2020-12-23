@@ -1,44 +1,20 @@
 <template>
-  <div class="home d-flex" style="min-height: 1080px;">
-    <div class="py-3 m-5" style="width: 800px;">
-      <MainSearch @clickshow="ShowDetail"></MainSearch>
+  <div class="home d-flex flex-wrap" style="width: 1400px; margin-top: 50px; margin-left: 250px;">
+    <SearchBar @startsearch="GoSearch" :search_time="search_time"/>
+    <LumiaNews/>
+    <div class="mb-2">
+      <UserStat :stat="total_statics" :notYet="notYet" :isError="isError" :isLoading="isLoading"/>
+      <MainMost :most_played="most_played" :notYet="notYet" :isError="isError" :isLoading="isLoading"/>
     </div>
-    <div class="py-3 m-5" style="width: 800px;"> 
-      <h2 class="text-light">블서 뉴스</h2>
-      <b-carousel
-        id="carousel-1"
-        v-model="slide"
-        :interval="4000"
-        controls
-        indicators
-        background="#ababab"
-        img-width="1280"
-        img-height="720"
-        style="text-shadow: 3px 3px 3px black;"
-        @sliding-start="onSlideStart"
-        @sliding-end="onSlideEnd"
-      >
-        <b-carousel-slide v-for="(nownews,index) in News" :key="index" :img-src="nownews.url" style="height:450px;">
-          <h2 @click="OpenNews(index)" style="cursor:pointer;">{{nownews.title}}</h2>
-        </b-carousel-slide>
-      </b-carousel>
-      <div>
-        <img v-for="(nownews,index) in News" :key="nownews.title" :src="nownews.url" @click="slide=index" class="car_little m-3" style="height:75px; width: 20%;">
-      </div>
-      <div class="py-3">
-        <h1 v-show="!isClick" class="text-light">전적 클릭하시면 <br> 세부정보를 보여드립니다</h1>
-        <div v-show="isClick">
-          <div class="d-flex justify-content-between">
-            <img src="" alt="" id="click_chr">
-            <h2 class="text-light" id="click_name"></h2>
-            <div id="click_stat">
-            </div>
-          </div>
-          <div class="d-flex" id="click_item">
-            <RecentMatch :match="ClickedMatch" :pk="pkpk" style="background-color: rgb(51,51,51); border-radius: 10px; min-width: 100%;"></RecentMatch>
-          </div>
-        </div>
-      </div>
+    <ERBSNews/>
+    <div style="width: 396px;">
+      <span class="main_high_rank_text" style="float: left;">캐릭터별 평균 순위</span>
+      <MainHighRank v-for="(stat,index) in character_statics" :key="stat.avg_win+stat.chr_name+index" :character_stat="stat"/>
+      <RecentMatch :match="ClickedMatch" :pk="ClickedMatch.date"/>
+    </div>
+    <div style="width: 895px; margin-left: 52px;">
+      <span class="recent_match_text" style="float: left;">최근 매치</span>
+      <RecentMatchtable :recent_match="recent_match" @clickshow="ShowDetail"/>
     </div>
   </div>
 </template>
@@ -46,8 +22,14 @@
 <script>
 // @ is an alias to /src
 import Axios from 'axios'
-import MainSearch from '../components/matchhistory/MainSearch.vue'
 import RecentMatch from '../components/matchhistory/RecentMatch.vue'
+import SearchBar from '../components/matchhistory/SearchBar.vue'
+import LumiaNews from '../components/home/LumiaNews.vue'
+import UserStat from '../components/matchhistory/UserStat.vue'
+import ERBSNews from '../components/home/ERBSNews.vue'
+import MainMost from '../components/matchhistory/MainMost.vue'
+import MainHighRank from '../components/matchhistory/MainHighRank.vue'
+import RecentMatchtable from '../components/matchhistory/RecentMatchTable'
 var SERVER_URL = ''
 const check_url = window.location.hostname
 if (check_url == 'localhost') {SERVER_URL = 'http://localhost:8000/'}
@@ -59,12 +41,18 @@ export default {
   name: 'Home',
   data() {
     return {
-      slide: 0,
-      sliding: null,
-      News: [],
+      recent_match: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       isClick: false,
       ClickedMatch: {},
-      pkpk: 'aksdfkjdnn'
+      pkpk: 'aksdfkjdnn',
+      notYet: true,
+      isLoading: false,
+      isError: false,
+      season: 'OPEN',
+      total_statics: {},
+      most_played: [0,0,0,0,0],
+      character_statics: [],
+      search_time: ''
     }
   },
   methods: {
@@ -79,19 +67,46 @@ export default {
     OpenNews(n) {
       window.open(this.News[n].click,'_blank')
     },
+    GoSearch(value) {
+      let user_name = value.user_name
+      let mode = ['Solo','Duo','Trio']
+      let selected_mode = mode[value.mode_select]
+      this.SearchHistory(user_name,selected_mode)
+    },
+    SearchHistory(name,mode) {
+      if(name == null) {
+        alert('닉네임을 입력해주세요')
+        return false
+      }
+      this.notYet = false
+      this.isLoading = true
+      this.isError = false
+      Axios({
+        method: "GET",
+        url: `${SERVER_URL}matchhistory/search/${name}/${this.season}/${mode}`
+      })
+      .then(res => {
+        this.isLoading = false
+        if(res.data.success == 0) {this.isError = true}
+        else {
+          this.character_statics = res.data.character_statics
+          this.most_played = res.data.most_played
+          this.total_statics = res.data.total_statics
+          this.total_statics.name = name
+          let today = new Date()
+          this.search_time = `${today.getFullYear()}/${today.getMonth()+1}/${today.getDate()}/${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`
+          this.isError = false
+          this.recent_match = res.data.recent_match
+        }
+      })
+      .catch(err => {
+        this.isLoading = false
+        this.isError = true
+        console.log(err)
+      })
+    },
     ShowDetail(value) {
       this.ClickedMatch = value
-      this.pkpk = this.slide+value.chr_name+value.level+value.rank
-      this.isClick = true
-      // console.log(value)
-      // var selectWindow = document.getElementById('click_chr')
-      // selectWindow.src = `${IMG_URL}소형/${value.chr_name}.png`
-      // selectWindow = document.getElementById('click_name')
-      // selectWindow.innerText = value.chr_name
-      // selectWindow = document.getElementById('click_stat')
-      // selectWindow.innerHTML = `<b class="text-light">순위:${value.rank}위</b><br><b class="text-light">사냥수:${value.animal_cnt}</b><br><b class="text-light">킬수:${value.kill_cnt}</b>`
-      // selectWindow = document.getElementById('click_item')
-      // selectWindow.innerHTML = `<img src="${value.weapon_img}" style="height:40px;"> <img src="${value.cloth_img}" style="height:40px;"> <img src="${value.head_img}" style="height:40px;"> <img src="${value.arm_img}" style="height:40px;"> <img src="${value.leg_img}" style="height:40px;"> <img src="${value.accessory_img}" style="height:40px;">`
     }
   },
   created() {
@@ -105,8 +120,14 @@ export default {
     .catch(err => {console.log(err)})
   },
   components: {
-    MainSearch,
-    RecentMatch
+    RecentMatch,
+    SearchBar,
+    LumiaNews,
+    UserStat,
+    ERBSNews,
+    MainMost,
+    MainHighRank,
+    RecentMatchtable
   }
 }
 </script>
@@ -131,5 +152,33 @@ export default {
   -ms-transform:scale(1.2);   
   -o-transform:scale(1.2);
   transform:scale(1.2);
+}
+
+.main_high_rank_text {
+  height: 31px;
+  font-family: 'SeoulNamsanM';
+  font-size: 32px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -2.4px;
+  text-align: left;
+  color: #bdbdbd;
+}
+
+.recent_match_text {
+  height: 30px;
+  font-family: 'SeoulNamsanM';
+  margin-left: 16px;
+  margin-bottom: 8px;;
+  font-size: 32px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -2.4px;
+  text-align: left;
+  color: #bdbdbd;
 }
 </style>

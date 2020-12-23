@@ -10,16 +10,16 @@
           <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
           <span class="nav_button_text" @click="GoPush(3)">게임 정보</span>
           <span class="nav_button_text" @click="GoPush(4)">공략</span>
-          <span class="nav_button_text" @click="GoPush(4)">Contact</span>
+          <span class="nav_button_text" @click="GoPush(4)">Help</span>
         </div>
         <div style="width:40%;"></div>
         <form @submit.prevent="Search" class="my-2" style="width: 20%; z-index: 1;">
           <input type="text" style="width: 80%; border-radius: 3% 0 0 3% / 50% 50% 50% 50%; background-color: rgb(0,0,0); padding: 0 10px 0 10px; color: rgb(255,255,255);" v-model="search_text" placeholder="여긴 아직 미구현입니다" class="search_bar">
-          <img :src="require('./assets/image/assets/button-search-01-on.png')" style="width: 20%;">
+          <img :src="require('./assets/image/assets/button-search-all-on.png')" style="width: 20%;">
         </form>
       </div>
     </div>
-    <div class="ml-5">
+    <div>
       <router-view class="py-2"/>
     </div>
   </div>
@@ -38,7 +38,6 @@ export default {
   },
   created() {
     document.title = 'Lumia'
-    console.log(screen.width)
     if(window.outerWidth > 2000) {this.BigDisplay = true}
   },
   methods: {

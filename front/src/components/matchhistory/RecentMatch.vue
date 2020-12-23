@@ -1,5 +1,5 @@
 <template>
-  <div class="m-2 text-light" :style="rank">
+  <div class="m-2 text-light" :style="rank" v-if="isView">
     <div class="">
       <div class="d-flex justify-content-around">
         <div class="">
@@ -81,7 +81,8 @@ export default {
       leg_text: null,
       accessory_text: null,
       pk_list: [null,null,null,null,null,null],
-      date: null
+      date: null,
+      isView: false
     }
   },
   props: {
@@ -90,16 +91,16 @@ export default {
   },
   mounted() {
     if(this.match.rank == 1) {
-      this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700;}'
+      this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700; background-color: rgba(211,211,211,0.1);}'
       this.h1_rank = '{color: #ffd700;}'
     } else if (this.match.rank == 2) {
-      this.rank = '{border-radius: 10%; border-left: 1rem solid #7c7c7c;}'
+      this.rank = '{border-radius: 10%; border-left: 1rem solid #7c7c7c; background-color: rgba(211,211,211,0.1);}'
       this.h1_rank = '{color: #7c7c7c;}'
     } else if (this.match.rank == 3) {
-      this.rank = '{border-radius: 10%; border-left: 1rem solid #624637;}'
+      this.rank = '{border-radius: 10%; border-left: 1rem solid #624637; background-color: rgba(211,211,211,0.1);}'
       this.h1_rank = '{color: #624637;}'
     } else {
-      this.rank = '{border-radius: 30px; border-left: 1rem solid #ffffff;}'
+      this.rank = '{border-radius: 10%; border-left: 1rem solid #ffffff; background-color: rgba(211,211,211,0.1);}'
       this.h1_rank = '{color: white;}'
     }
     this.date = this.match.date
@@ -211,17 +212,18 @@ export default {
   watch: {
     pk() {
       this.date = this.match.date
+      this.isView = true
       if(this.match.rank == 1) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700; background-color: rgba(211,211,211,0.1);}'
         this.h1_rank = '{color: #ffd700;}'
       } else if (this.match.rank == 2) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #AC58FA;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #AC58FA; background-color: rgba(211,211,211,0.1);}'
         this.h1_rank = '{color: #7c7c7c;}'
       } else if (this.match.rank == 3) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #00498c;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #00498c; background-color: rgba(211,211,211,0.1);}'
         this.h1_rank = '{color: #624637;}'
       } else {
-        this.rank = '{border-radius: 30px; border-left: 1rem solid #808080;}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #808080; background-color: rgba(211,211,211,0.1);}'
         this.h1_rank = '{color: white;}'
       }
       this.ChangeColor(this.match.arm,'ar')

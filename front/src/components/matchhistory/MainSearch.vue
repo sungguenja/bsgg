@@ -20,8 +20,8 @@
         <img :src="require('../../assets/image/assets/button-search-01-on.png')" style="width: 9%; cursor:pointer;" @click="SearchHistory">
       </form>
       <div class="col-12">
-        <div v-show="notYet" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 94.5%; position: absolute;">
-          <h1 class="mt-5">아직 전적 검색을 <br>안하셨어요!</h1>
+        <div v-show="notYet" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 95%; position: absolute;">
+          <h1 style="margin-top: 80px; color: white;">아직 전적 검색을 <br>안하셨어요!</h1>
         </div>
         <div v-show="!notYet & isLoading" style="background-color: rgba(0,0,0,0.5); height:100%; z-index: 1; width: 94.5%; position: absolute;">
           <b-spinner style="width: 3rem; height: 3rem;" label="Large Spinner" type="grow" variant="light"></b-spinner>
