@@ -1,4 +1,5 @@
 from django.http import JsonResponse
+from django.conf import settings
 import requests, json
 from bs4 import BeautifulSoup as bs
 # Create your views here.
@@ -135,3 +136,8 @@ def steam(request,news_cnt):
             now['url'] = 'https://raw.githubusercontent.com/sungguenja/lumiaimg/master/loading1.png'
         answer['response'].append(now)
     return JsonResponse(answer)
+
+def rank(request,mode):
+    BSER_KEY = settings.BSER_KEY
+    output = requests.get('https://open-api.bser.io/v1/rank/top/1/'+str(mode),headers={"accept":"application/json","x-api-key":BSER_KEY})
+    return JsonResponse(output.json())

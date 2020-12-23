@@ -75,6 +75,21 @@
         야생동물 정보
       </b-card-text>
     </b-card>
+    <b-card
+      title="Card Title"
+      img-src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/clans/34875433/ecf7b911c55b1c86de0e8dd06473c1f942775b0b.png"
+      img-alt="Image"
+      img-top
+      tag="article"
+      style="max-width: 20rem; cursor: pointer; background-color: rgb(51,51,51); width: 17rem;"
+      img-height="300"
+      class="m-3 chr_window col-3"
+      @click="GoPush(5)"
+    >
+      <b-card-text>
+        랭커 보기
+      </b-card-text>
+    </b-card>
   </div>
 </template>
 
@@ -92,6 +107,10 @@ export default {
       }
       if(n==4) {
         this.$router.push({name: 'AnimalList'})
+        return false
+      }
+      if(n==5) {
+        this.$router.push({name: 'Ranking'})
         return false
       }
       this.$router.push({name: 'Category',params:{category:n}})

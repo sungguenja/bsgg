@@ -36,7 +36,7 @@
               </div>
             </div>
             <div class="col-9">
-              <RecentMatch v-for="(match,i) in recent_match" :match="match" :key="match.chr_name+i+match.kill_cnt" :pk="i" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
+              <RecentMatch v-for="(match,i) in recent_match" :match="match" :key="match.chr_name+i+match.kill_cnt" :pk="i+match.chr_name" style="background-color: rgb(51,51,51); border-radius: 10px;"></RecentMatch>
             </div>
           </div>
         </div>

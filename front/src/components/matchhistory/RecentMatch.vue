@@ -104,6 +104,7 @@ export default {
       this.h1_rank = '{color: white;}'
     }
     this.date = this.match.date
+    if(this.date != null) {this.isView = true}
     this.ChangeColor(this.match.arm,'ar')
     this.ChangeColor(this.match.cloth,'cl')
     this.ChangeColor(this.match.head,'he')

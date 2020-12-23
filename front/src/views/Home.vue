@@ -1,20 +1,26 @@
 <template>
-  <div class="home d-flex flex-wrap" style="width: 1400px; margin-top: 50px; margin-left: 250px;">
-    <SearchBar @startsearch="GoSearch" :search_time="search_time"/>
-    <LumiaNews/>
-    <div class="mb-2">
-      <UserStat :stat="total_statics" :notYet="notYet" :isError="isError" :isLoading="isLoading"/>
-      <MainMost :most_played="most_played" :notYet="notYet" :isError="isError" :isLoading="isLoading"/>
+  <div class="home" style="width: 1400px; margin-top: 50px; margin-left: 250px;">
+    <div style="min-width: 100%; min-height: 600px;" class="d-none">
+      <h1>루트창</h1>
     </div>
-    <ERBSNews/>
-    <div style="width: 396px;">
-      <span class="main_high_rank_text" style="float: left;">캐릭터별 평균 순위</span>
-      <MainHighRank v-for="(stat,index) in character_statics" :key="stat.avg_win+stat.chr_name+index" :character_stat="stat"/>
-      <RecentMatch :match="ClickedMatch" :pk="ClickedMatch.date"/>
-    </div>
-    <div style="width: 895px; margin-left: 52px;">
-      <span class="recent_match_text" style="float: left;">최근 매치</span>
-      <RecentMatchtable :recent_match="recent_match" @clickshow="ShowDetail"/>
+    <div class="d-flex flex-wrap"> 
+      <SearchBar @startsearch="GoSearch" :search_time="search_time"/>
+      <!-- <LumiaNews/> -->
+      <div style="min-width: 100px;"></div> 
+      <div class="mb-2">
+        <UserStat :stat="total_statics" :notYet="notYet" :isError="isError" :isLoading="isLoading"/>
+        <MainMost :most_played="most_played" :notYet="notYet" :isError="isError" :isLoading="isLoading"/>
+      </div>
+      <ERBSNews/>
+      <div style="width: 396px;" v-show="isSearch">
+        <span class="main_high_rank_text" style="float: left;">캐릭터별 평균 순위</span>
+        <MainHighRank v-for="(stat,index) in character_statics" :key="stat.avg_win+stat.chr_name+index" :character_stat="stat"/>
+        <RecentMatch :match="ClickedMatch" :pk="ClickedMatch.date"/>
+      </div>
+      <div style="width: 895px; margin-left: 52px;" v-show="isSearch">
+        <span class="recent_match_text" style="float: left;">최근 매치</span>
+        <RecentMatchtable :recent_match="recent_match" @clickshow="ShowDetail"/>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +30,7 @@
 import Axios from 'axios'
 import RecentMatch from '../components/matchhistory/RecentMatch.vue'
 import SearchBar from '../components/matchhistory/SearchBar.vue'
-import LumiaNews from '../components/home/LumiaNews.vue'
+// import LumiaNews from '../components/home/LumiaNews.vue'
 import UserStat from '../components/matchhistory/UserStat.vue'
 import ERBSNews from '../components/home/ERBSNews.vue'
 import MainMost from '../components/matchhistory/MainMost.vue'
@@ -52,7 +58,8 @@ export default {
       total_statics: {},
       most_played: [0,0,0,0,0],
       character_statics: [],
-      search_time: ''
+      search_time: '',
+      isSearch: false
     }
   },
   methods: {
@@ -87,6 +94,7 @@ export default {
       })
       .then(res => {
         this.isLoading = false
+        this.isSearch = true
         if(res.data.success == 0) {this.isError = true}
         else {
           this.character_statics = res.data.character_statics
@@ -122,7 +130,7 @@ export default {
   components: {
     RecentMatch,
     SearchBar,
-    LumiaNews,
+    // LumiaNews,
     UserStat,
     ERBSNews,
     MainMost,

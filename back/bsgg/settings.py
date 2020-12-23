@@ -169,3 +169,6 @@ AUTH_USER_MODEL = 'accounts.User'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# environment variable
+BSER_KEY = get_secret("BSER_APIKEY")

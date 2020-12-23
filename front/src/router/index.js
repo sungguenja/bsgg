@@ -15,6 +15,7 @@ import MatTest from '../views/gamedata/MapList.vue'
 import MapDetail from '../views/gamedata/MapDetail.vue'
 import AnimalList from '../views/gamedata/AnimalList.vue'
 import AnimalDetail from '../views/gamedata/AnimalDetail.vue'
+import Ranking from '../views/open_api/Ranking.vue'
 
 Vue.use(VueRouter)
 
@@ -96,6 +97,11 @@ const routes = [
     path: '/animal/:pk',
     name: 'AnimalDetail',
     component: AnimalDetail
+  },
+  {
+    path: '/rank',
+    name: 'Ranking',
+    component: Ranking
   },
   {
     path: '/notfound',
