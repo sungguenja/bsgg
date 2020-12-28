@@ -126,26 +126,29 @@
                 </tbody>
               </table>
             </div>
-            <div style="min-width: 300px;">
+            <div style="width: 800px;">
               <h3 class="text-light text-center" style="width: 100%;">모드별 변동</h3>
-              <table class="table table-secondary table-hover" style="width: 100%;">
+              <table class="table table-secondary table-hover" style="width: 800px;">
                 <thead>
                   <tr>
-                    <th scope="col">모드</th>
-                    <th scope="col">받는 데미지</th>
-                    <th scope="col">주는 데미지</th>
+                    <th scope="col">무기</th>
+                    <th scope="col">솔로 받는 데미지</th>
+                    <th scope="col">솔로 주는 데미지</th>
+                    <th scope="col">듀오 받는 데미지</th>
+                    <th scope="col">듀오 주는 데미지</th>
+                    <th scope="col">스쿼드 받는 데미지</th>
+                    <th scope="col">스쿼드 주는 데미지</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">듀오</th>
-                    <td>{{100+ampli[0].fields.damage_taken}}%</td>
-                    <td>{{100+ampli[0].fields.damage_done}}%</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">스쿼드</th>
-                    <td>{{100+ampli[1].fields.damage_taken}}%</td>
-                    <td>{{100+ampli[1].fields.damage_done}}%</td>
+                  <tr v-for="(amp,index) in ampli" :key="index+amp.weapon_type+amp.DuoDamageGive+amp.DuoDamageTaken+amp.SoloDamageGive+amp.SoloDamageTaken+amp.SquadDamageGive+amp.SquadDamageTaken">
+                    <th scope="row">{{amp.weapon_type}}</th>
+                    <td>{{100+amp.SoloDamageTaken}}%</td>
+                    <td>{{100+amp.SoloDamageGive}}%</td>
+                    <td>{{100+amp.DuoDamageTaken}}%</td>
+                    <td>{{100+amp.DuoDamageGive}}%</td>
+                    <td>{{100+amp.SquadDamageTaken}}%</td>
+                    <td>{{100+amp.SquadDamageGive}}%</td>
                   </tr>
                 </tbody>
               </table>

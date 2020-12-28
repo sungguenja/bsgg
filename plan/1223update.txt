@@ -1,0 +1,3 @@
+insert into characters_realampli ('mode','damage_taken','damage_done','charac_id','weap_id') values ('Solo',0,0,1,3);
+insert into characters_realampli ('mode','damage_taken','damage_done','charac_id','weap_id') values ('Duo',2,0,1,3);
+insert into characters_realampli ('mode','damage_taken','damage_done','charac_id','weap_id') values ('Trio',,,,);

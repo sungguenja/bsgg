@@ -66,7 +66,7 @@ class UsedWeapon(models.Model):
     weapon_name = models.ForeignKey(Weapon,models.CASCADE)
 
     def __str__(self):
-        return '{0} {1}'.format(self.charac.name,self.weapon_name.name)
+        return '{0} {1} {2}'.format(self.charac.name,self.weapon_name.name,self.pk)
 
 class RealAmpli(models.Model):
     charac = models.ForeignKey(Character,on_delete=models.CASCADE)
@@ -77,3 +77,49 @@ class RealAmpli(models.Model):
 
     def __str__(self):
         return '{0} {1} {2}'.format(self.charac.name,self.mode,self.weap.name)
+
+class ModeWeaponCharacterAmpli(models.Model):
+    charac_weapon = models.ForeignKey(UsedWeapon,on_delete=models.CASCADE)
+    SoloDamageTaken = models.FloatField()
+    SoloDamageGive = models.FloatField()
+    DuoDamageTaken = models.FloatField()
+    DuoDamageGive = models.FloatField()
+    SquadDamageTaken = models.FloatField()
+    SquadDamageGive = models.FloatField()
+
+    def __str__(self):
+        return '{0} {1} 증폭'.format(self.charac_weapon.charac.name, self.charac_weapon.weapon_name.name)
+
+class WeaponCharacterStat(models.Model):
+    charac_weapon = models.ForeignKey(UsedWeapon,on_delete=models.CASCADE)
+    mode = models.CharField(max_length=100)
+    is_ranker = models.BooleanField()
+    win_rate = models.FloatField()
+    pick_rate = models.FloatField()
+    avg_kill = models.FloatField()
+    avg_rank = models.FloatField()
+    
+    def __str__(self):
+        if self.is_ranker:
+            text = '랭커'
+        else:
+            text = '전체'
+        return '{0} {1} {2} 통계'.format(self.charac_weapon.charac.name,self.charac_weapon.weapon_name.name,text)
+
+class WeaponStat(models.Model):
+    charac_weapon = models.ForeignKey(UsedWeapon,on_delete=models.CASCADE)
+    item = models.ForeignKey('gamedata.Item',on_delete=models.CASCADE)
+    mode = models.CharField(max_length=100)
+    win_rate = models.FloatField()
+    pick_rate = models.FloatField()
+
+    def __str__(self):
+        return '{0} {1} {2} 통계'.format(self.charac_weapon.charac.name,self.charac_weapon.weapon_name.name,self.item.name)
+
+class ArmorStat(models.Model):
+    item = models.ForeignKey('gamedata.Item',on_delete=models.CASCADE)
+    mode = models.CharField(max_length=100)
+    win_rate = models.FloatField()
+
+    def __str__(self):
+        return '{0} {1} 통계'.format(self.item.name,self.mode)
