@@ -53,105 +53,112 @@
         <button @click="ChangeMode(2)" class="m-3">능력치</button>
       </div>
       <div class="d-flex" style="margin-left: 150px;">
-        <div class="m-3" style="width: 50%;" v-if="now_mode == 0">
-          <SkillWindow v-for="(skill,i) in skills" :key="skill.name+i" :pk="skill.pk" :name="skill.fields.name" :stat="JSON.parse(skill.fields.stats)" :detail="skill.fields.detail" :basic="skill.fields.is_basic" :button="skill.fields.button" :chname="stats.name"></SkillWindow>
+        <div class="m-3" style="width: 50%;" v-show="now_mode === 0">
+          <SkillWindow v-for="(skill,i) in skills" :key="skill.fields.name+i" :pk="skill.pk" :name="skill.fields.name" :stat="JSON.parse(skill.fields.stats)" :detail="skill.fields.detail" :basic="skill.fields.is_basic" :button="skill.fields.button" :chname="stats.name"></SkillWindow>
         </div>
         <div class="" style="width: 25%;">
-          <div v-if="now_mode == 1">
-            <h1>통계 관련은 추후 제공 ㅠㅠ</h1>
-            <h1>api 생기고 구현 예정</h1>
-          </div>
-          <div v-if="now_mode == 2" class="d-flex">
-            <div>
-              <h3 class="text-light">능력치</h3>
-              <table class="table table-secondary table-hover mx-3" style="width: 450px;">
-                <thead>
-                  <tr>
-                    <th scope="col">능력치</th>
-                    <th scope="col">시작값</th>
-                    <th scope="col">성장값</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">공격력</th>
-                    <td>{{stats.attack}}</td>
-                    <td>{{stats.attack_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">방어력</th>
-                    <td>{{stats.shield}}</td>
-                    <td>{{stats.shield_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">체력</th>
-                    <td>{{stats.health}}</td>
-                    <td>{{stats.health_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">체력 리젠</th>
-                    <td>{{stats.health_regen}}</td>
-                    <td>{{stats.health_regen_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">스테미너</th>
-                    <td>{{stats.stamina}}</td>
-                    <td>{{stats.stamina_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">스테미나 리젠</th>
-                    <td>{{stats.stamina_regen}}</td>
-                    <td>{{stats.stamina_regen_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">공격속도</th>
-                    <td>{{stats.attack_speed}}</td>
-                    <td>{{stats.attack_speed_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">이동속도</th>
-                    <td>{{stats.moving_speed}}</td>
-                    <td>{{stats.moving_speed_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">크리티컬</th>
-                    <td>{{stats.critical}}</td>
-                    <td>{{stats.critical_growth}}</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">시야</th>
-                    <td>{{stats.eyesight}}</td>
-                    <td>{{stats.eyesight_growth}}</td>
-                  </tr>
-                </tbody>
-              </table>
+          <div v-show="now_mode === 1">
+            <div class="d-flex">
+              <button @click="view_rank = !view_rank">통계 집단 바꾸기</button>
+              <div v-if="!view_rank"><b class="text-light ml-3">전체</b></div>
+              <div v-else><b class="text-light ml-3">상위 랭커</b></div>
             </div>
-            <div style="width: 800px;">
-              <h3 class="text-light text-center" style="width: 100%;">모드별 변동</h3>
-              <table class="table table-secondary table-hover" style="width: 800px;">
-                <thead>
-                  <tr>
-                    <th scope="col">무기</th>
-                    <th scope="col">솔로 받는 데미지</th>
-                    <th scope="col">솔로 주는 데미지</th>
-                    <th scope="col">듀오 받는 데미지</th>
-                    <th scope="col">듀오 주는 데미지</th>
-                    <th scope="col">스쿼드 받는 데미지</th>
-                    <th scope="col">스쿼드 주는 데미지</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="(amp,index) in ampli" :key="index+amp.weapon_type+amp.DuoDamageGive+amp.DuoDamageTaken+amp.SoloDamageGive+amp.SoloDamageTaken+amp.SquadDamageGive+amp.SquadDamageTaken">
-                    <th scope="row">{{amp.weapon_type}}</th>
-                    <td>{{100+amp.SoloDamageTaken}}%</td>
-                    <td>{{100+amp.SoloDamageGive}}%</td>
-                    <td>{{100+amp.DuoDamageTaken}}%</td>
-                    <td>{{100+amp.DuoDamageGive}}%</td>
-                    <td>{{100+amp.SquadDamageTaken}}%</td>
-                    <td>{{100+amp.SquadDamageGive}}%</td>
-                  </tr>
-                </tbody>
-              </table>
+            <CharStatChart :all_stat="all_state" :stat="stat" :ranker="false" v-show="!view_rank"/>
+            <CharStatChart :all_stat="all_state" :stat="stat" :ranker="true" v-show="view_rank"/>
+          </div>
+          <div v-show="now_mode === 2">
+            <div style="display: flex;">
+              <div>
+                <h3 class="text-light">능력치</h3>
+                <table class="table table-secondary table-hover mx-3" style="width: 450px;">
+                  <thead>
+                    <tr>
+                      <th scope="col">능력치</th>
+                      <th scope="col">시작값</th>
+                      <th scope="col">성장값</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">공격력</th>
+                      <td>{{stats.attack}}</td>
+                      <td>{{stats.attack_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">방어력</th>
+                      <td>{{stats.shield}}</td>
+                      <td>{{stats.shield_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">체력</th>
+                      <td>{{stats.health}}</td>
+                      <td>{{stats.health_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">체력 리젠</th>
+                      <td>{{stats.health_regen}}</td>
+                      <td>{{stats.health_regen_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">스테미너</th>
+                      <td>{{stats.stamina}}</td>
+                      <td>{{stats.stamina_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">스테미나 리젠</th>
+                      <td>{{stats.stamina_regen}}</td>
+                      <td>{{stats.stamina_regen_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">공격속도</th>
+                      <td>{{stats.attack_speed}}</td>
+                      <td>{{stats.attack_speed_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">이동속도</th>
+                      <td>{{stats.moving_speed}}</td>
+                      <td>{{stats.moving_speed_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">크리티컬</th>
+                      <td>{{stats.critical}}</td>
+                      <td>{{stats.critical_growth}}</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">시야</th>
+                      <td>{{stats.eyesight}}</td>
+                      <td>{{stats.eyesight_growth}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div style="width: 800px;">
+                <h3 class="text-light text-center" style="width: 100%;">모드별 변동</h3>
+                <table class="table table-secondary table-hover" style="width: 800px;">
+                  <thead>
+                    <tr>
+                      <th scope="col">무기</th>
+                      <th scope="col">솔로 받는 데미지</th>
+                      <th scope="col">솔로 주는 데미지</th>
+                      <th scope="col">듀오 받는 데미지</th>
+                      <th scope="col">듀오 주는 데미지</th>
+                      <th scope="col">스쿼드 받는 데미지</th>
+                      <th scope="col">스쿼드 주는 데미지</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for="(amp,index) in ampli" :key="index+amp.weapon_type+amp.DuoDamageGive+amp.DuoDamageTaken+amp.SoloDamageGive+amp.SoloDamageTaken+amp.SquadDamageGive+amp.SquadDamageTaken">
+                      <th scope="row">{{amp.weapon_type}}</th>
+                      <td>{{100+amp.SoloDamageTaken}}%</td>
+                      <td>{{100+amp.SoloDamageGive}}%</td>
+                      <td>{{100+amp.DuoDamageTaken}}%</td>
+                      <td>{{100+amp.DuoDamageGive}}%</td>
+                      <td>{{100+amp.SquadDamageTaken}}%</td>
+                      <td>{{100+amp.SquadDamageGive}}%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -164,6 +171,7 @@
 import Axios from 'axios'
 import firebase from 'firebase'
 import SkillWindow from '../../components/gamedata/SkillWindow.vue'
+import CharStatChart from '../../components/gamedata/CharStatChart.vue'
 var SERVER_URL = ''
 const check_url = window.location.hostname
 if (check_url == 'localhost') {SERVER_URL = 'http://localhost:8000/'}
@@ -201,7 +209,11 @@ export default {
       },
       weaponthumbnail: [],
       ampli: [],
-      now_mode: 0
+      now_mode: 0,
+      all_state: {},
+      ranker_state: [],
+      stat: [],
+      view_rank: false
     }
   },
   created() {
@@ -215,6 +227,9 @@ export default {
         url: `${SERVER_URL}characters/detail/${this.pk}`
       })
       .then(res => {
+        this.all_state = res.data.all_state
+        this.ranker_state = res.data.ranker_state
+        this.stat = res.data.stat
         this.stats = res.data.character[0].fields
         this.skills = res.data.skills
         this.weapons = res.data.weapons
@@ -278,6 +293,7 @@ export default {
   },
   components: {
     SkillWindow,
+    CharStatChart
   }
 }
 </script>
