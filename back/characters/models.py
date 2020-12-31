@@ -104,7 +104,7 @@ class WeaponCharacterStat(models.Model):
             text = '랭커'
         else:
             text = '전체'
-        return '{0} {1} {2} 통계'.format(self.charac_weapon.charac.name,self.charac_weapon.weapon_name.name,text)
+        return '{0} {1} {2} {3} 통계'.format(self.charac_weapon.charac.name,self.charac_weapon.weapon_name.name,text,self.mode)
 
 class WeaponStat(models.Model):
     charac_weapon = models.ForeignKey(UsedWeapon,on_delete=models.CASCADE)

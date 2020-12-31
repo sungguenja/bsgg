@@ -34,7 +34,7 @@
 <script>
 export default {
   props: {
-    recent_match: Object
+    recent_match: Array
   },
   methods: {
     ShowDetail(n) {
