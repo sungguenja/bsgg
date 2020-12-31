@@ -31,11 +31,11 @@ export default {
       if(this.info.rank == 1) {
         this.rank = '{border-radius: 10%; border-left: 1rem solid #ffd700; background-color: rgba(211,211,211,0.1);}'
       } else if (this.info.rank == 2) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #7c7c7c; background-color: rgba(211,211,211,0.1);}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #AC58FA; background-color: rgba(211,211,211,0.1);}'
       } else if (this.info.rank == 3) {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #624637; background-color: rgba(211,211,211,0.1);}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #00498c; background-color: rgba(211,211,211,0.1);}'
       } else {
-        this.rank = '{border-radius: 10%; border-left: 1rem solid #ffffff; background-color: rgba(211,211,211,0.1);}'
+        this.rank = '{border-radius: 10%; border-left: 1rem solid #808080; background-color: rgba(211,211,211,0.1);}'
       }
     }
   },
