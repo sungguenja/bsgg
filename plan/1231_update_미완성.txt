@@ -1,0 +1,15 @@
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Solo',4.1,46.4,33,425);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Duo',14.3,39.6,33,425);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Squad',21.2,38.6,33,425);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Solo',3.2,10.8,33,423);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Duo',10.3,20.7,33,423);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Squad',20.8,10.8,33,423);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Solo',5.5,18.0,33,424);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Duo',14.0,11.7,33,424);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Squad',20.8,10.5,33,424);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Solo',5.2,0.6,33,500);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Duo',10.7,0.6,33,500);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Squad',19.6,0.8,33,500);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Solo',4.3,4.7,33,427);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Duo',11.6,9.7,33,427);
+insert into characters_weaponstat ('mode','win_rate','pick_rate','charac_weapon_id','item_id') values ('Squad',17.5,9.3,33,427);
