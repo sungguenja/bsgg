@@ -345,7 +345,7 @@ export default {
     stat() {
       this.startFunction()
     }
-  }
+  },
 }
 </script>
 

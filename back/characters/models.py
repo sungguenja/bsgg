@@ -114,7 +114,7 @@ class WeaponStat(models.Model):
     pick_rate = models.FloatField()
 
     def __str__(self):
-        return '{0} {1} {2} 통계'.format(self.charac_weapon.charac.name,self.charac_weapon.weapon_name.name,self.item.name)
+        return '{0} {1} {2} {3} 통계'.format(self.charac_weapon.charac.name,self.charac_weapon.weapon_name.name,self.item.name,self.mode)
 
 class ArmorStat(models.Model):
     item = models.ForeignKey('gamedata.Item',on_delete=models.CASCADE)

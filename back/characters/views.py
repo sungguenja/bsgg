@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.shortcuts import render
 from django.db.models import Avg
+from django.apps import apps
 from .models import *
 import json
 
@@ -84,6 +85,7 @@ def detail(request,pk):
       'squad_avg_rank':squad_state_ranker_avg_rank['avg_rank__avg']
     }
     weapon_stat = []
+    weapon_each_stat_data = []
     for k in weapons:
         data = {}
         now_ampli = ModeWeaponCharacterAmpli.objects.get(charac_weapon=k['pk'])
@@ -115,11 +117,30 @@ def detail(request,pk):
             stat_data['avg_rank_rank'] = list(state_object.filter(is_ranker=stat_data['is_ranker'],mode=stat_data['mode']).order_by('-avg_rank').values_list('avg_rank',flat=True)).index(stat_data['avg_rank'])+1
             stat_data['cate'] = cate[k['fields']['weapon_name']]
             weapon_stat.append(stat_data)
+        weapon_each_stat = WeaponStat.objects.filter(charac_weapon=k['pk'])
+        weapon_each_stat = serializers.serialize('json',weapon_each_stat)
+        weapon_each_stat = json.loads(weapon_each_stat)
+        for l in weapon_each_stat:
+            now = {}
+            weapon_name = apps.get_model('gamedata','Item').objects.get(pk=l['fields']['item'])
+            now['cate'] = cate[k['fields']['weapon_name']]
+            now['name'] = weapon_name.name
+            if l['fields']['mode'] == 'Solo':
+                now['mode'] = '솔로'
+            elif l['fields']['mode'] == 'Duo':
+                now['mode'] = '듀오'
+            elif l['fields']['mode'] == 'Squad':
+                now['mode'] = '스쿼드'
+            else:
+                now['mode'] = '잘못들어감 체크할것'
+            now['win_rate'] = l['fields']['win_rate']
+            now['pick_rate'] = l['fields']['pick_rate']
+            weapon_each_stat_data.append(now)
     using_weapon_name = []
     for i in weapons:
         skill = find_skill_detail(i['fields']['weapon_name'])
         using_weapon_name.append({'name':find_weapon_name(i['fields']['weapon_name']),'pk':i['fields']['weapon_name'],'skill':skill})
-    return JsonResponse({'character':choosed_character,'skills':skills,'weapons':using_weapon_name,'ampli':ampli_stats,'stat':weapon_stat,'all_state':state_all,'ranker_state':state_ranker},safe=False,json_dumps_params={'ensure_ascii':False})
+    return JsonResponse({'character':choosed_character,'skills':skills,'weapons':using_weapon_name,'ampli':ampli_stats,'stat':weapon_stat,'all_state':state_all,'ranker_state':state_ranker,'weapon_each_stat':weapon_each_stat_data},safe=False,json_dumps_params={'ensure_ascii':False})
 
 def find_weapon_name(pk):
     weapon_name = Weapon.objects.get(pk=pk)

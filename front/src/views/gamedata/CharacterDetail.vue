@@ -59,12 +59,17 @@
         <div class="" style="width: 25%;">
           <div v-show="now_mode === 1">
             <div class="d-flex">
-              <button @click="view_rank = !view_rank">통계 집단 바꾸기</button>
-              <div v-if="!view_rank"><b class="text-light ml-3">전체</b></div>
-              <div v-else><b class="text-light ml-3">상위 랭커</b></div>
+              <button @click="ChangeState">통계 집단 바꾸기</button>
+              <div v-if="view_rank==0"><b class="text-light ml-3">전체</b></div>
+              <div v-if='view_rank==1'><b class="text-light ml-3">상위 랭커</b></div>
+              <div v-if='view_rank==2'><b class="text-light ml-3">무기 통계</b></div>
             </div>
-            <CharStatChart :all_stat="all_state" :stat="stat" :ranker="false" v-show="!view_rank"/>
-            <CharStatChart :all_stat="all_state" :stat="stat" :ranker="true" v-show="view_rank"/>
+            <CharStatChart :all_stat="all_state" :stat="stat" :ranker="false" v-show="view_rank == 0"/>
+            <CharStatChart :all_stat="all_state" :stat="stat" :ranker="true" v-show="view_rank == 1"/>
+            <div v-show="view_rank == 2" v-for="(statsz, index) in weapon_state" :key="index+statsz[0].name+index+statsz[0].cate+statsz.length" >
+              <button @click="ChangeWeaponStat" v-show="index == WeaponShow">{{weapon_state[WeaponShow][0].cate}}</button>
+              <WeaponChart :stat="statsz" v-show="index == WeaponShow"/>
+            </div>
           </div>
           <div v-show="now_mode === 2">
             <div style="display: flex;">
@@ -172,6 +177,7 @@ import Axios from 'axios'
 import firebase from 'firebase'
 import SkillWindow from '../../components/gamedata/SkillWindow.vue'
 import CharStatChart from '../../components/gamedata/CharStatChart.vue'
+import WeaponChart from '../../components/gamedata/WeaponChart.vue'
 var SERVER_URL = ''
 const check_url = window.location.hostname
 if (check_url == 'localhost') {SERVER_URL = 'http://localhost:8000/'}
@@ -213,7 +219,9 @@ export default {
       all_state: {},
       ranker_state: [],
       stat: [],
-      view_rank: false
+      view_rank: false,
+      weapon_state: [],
+      WeaponShow: 0
     }
   },
   created() {
@@ -284,17 +292,37 @@ export default {
           this.weapons[j].skill = this.weapons[j].skill.replace(/\n/g, '<br>')
           this.weaponthumbnail.push(IMG_URL+`스킬/무기 스킬/${this.weapons[j].name}.png`)
         }
+        this.weapon_state = []
+        for(j=0;j<this.weapons.length;j++) {
+          this.weapon_state.push([])
+        }
+        for(i=0;i<res.data.weapon_each_stat.length;i++) {
+          for(j=0;j<this.weapons.length;j++) {
+            if(res.data.weapon_each_stat[i].cate == this.weapons[j].name) {
+              this.weapon_state[j].push(res.data.weapon_each_stat[i])
+            }
+          }
+        }
       })
       .catch(err => {console.log(err)})
     },
     ChangeMode(n) {
       this.now_mode = n
+    },
+    ChangeState() {
+      this.view_rank += 1
+      this.view_rank = this.view_rank%3
+    },
+    ChangeWeaponStat() {
+      this.WeaponShow += 1
+      this.WeaponShow = this.WeaponShow%this.weapon_state.length
     }
   },
   components: {
     SkillWindow,
-    CharStatChart
-  }
+    CharStatChart,
+    WeaponChart
+  },
 }
 </script>
 

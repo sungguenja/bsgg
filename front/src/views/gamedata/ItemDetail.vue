@@ -30,13 +30,13 @@
                 <b v-for="(value,key) in stats" :key="key+value">{{key}} : {{value}} <br> </b>
               </td>
             </tr>
-            <tr>
+            <tr v-if="item.area.length != 0">
               <td>드랍 장소</td>
               <td>
                 <b v-for="(value,index) in item.area" :key="value.pk+value.quantity+index+value.name"><span @click="GoAreaDetail(value.pk)" style="cursor: pointer;">{{value.name}} : {{value.quantity}} 개 </span><br> </b>
               </td>
             </tr>
-            <tr>
+            <tr v-if="item.animal.length != 0">
               <td>드랍 동물</td>
               <td>
                 <b v-for="(value,index) in item.animal" :key="value.pk+index+value.name"><span @click="GoAnimalDetail(value.pk)" style="cursor: pointer;"><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${value.name}.png`" alt="" style="height: 40px"><br>{{value.name}}</span><br></b>
