@@ -1,6 +1,6 @@
 <template>
   <div style="height: 300px;">
-    <button @click="ChangeModeButton">{{Mode[ModeButton]}}</button>
+    <button @click="ChangeModeButton">{{Mode[ModeButton]}} 승률</button>
     <canvas :id="'SoloWin'+cat" v-show="ModeButton == 0"></canvas>
     <canvas :id="'DuoWin'+cat" v-show="ModeButton == 1"></canvas>
     <canvas :id="'SquadWin'+cat" v-show="ModeButton == 2"></canvas>

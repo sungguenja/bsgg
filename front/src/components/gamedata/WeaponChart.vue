@@ -1,13 +1,16 @@
 <template>
   <div class="my-2">
+    <h2 class="text-light">솔로</h2>
     <div style="height: 450px;" class="d-flex">
       <canvas :id='"SoloWin"+stat[0].cate'></canvas>
       <canvas :id='"SoloPick"+stat[0].cate'></canvas>
     </div>
+    <h2 class="text-light">듀오</h2>
     <div style="height: 450px;" class="d-flex">
       <canvas :id='"DuoWin"+stat[0].cate'></canvas>
       <canvas :id='"DuoPick"+stat[0].cate'></canvas>
     </div>
+    <h2 class="text-light">스쿼드</h2>
     <div style="height: 450px;" class="d-flex">
       <canvas :id='"SquadWin"+stat[0].cate'></canvas>
       <canvas :id='"SquadPick"+stat[0].cate'></canvas>

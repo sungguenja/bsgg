@@ -5,7 +5,7 @@
     </div>
     <div class="col-6">
       <h2 class="text-light">{{name}}</h2>
-      <ArmorStat :stats="stats" :cat="name"/>
+      <ArmorStat v-if="categoryType == 1" :stats="stats" :cat="name"/>
     </div>
     <hr>
   </div>
@@ -30,7 +30,8 @@ export default {
   },
   props: {
     itemcat: Number,
-    name: String
+    name: String,
+    categoryType: Number
   },
   created() {
     this.SearchItems()
