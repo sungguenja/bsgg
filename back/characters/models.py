@@ -118,8 +118,11 @@ class WeaponStat(models.Model):
 
 class ArmorStat(models.Model):
     item = models.ForeignKey('gamedata.Item',on_delete=models.CASCADE)
-    mode = models.CharField(max_length=100)
-    win_rate = models.FloatField()
+    mode = models.CharField(max_length=100,default='')
+    win_rate = models.FloatField(default=0)
+    solo_win = models.FloatField(default=0)
+    duo_win = models.FloatField(default=0)
+    squad_win = models.FloatField(default=0)
 
     def __str__(self):
-        return '{0} {1} 통계'.format(self.item.name,self.mode)
+        return '{0} 승률 통계'.format(self.item.name)
