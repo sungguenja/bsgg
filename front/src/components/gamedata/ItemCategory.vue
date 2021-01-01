@@ -5,6 +5,7 @@
     </div>
     <div class="col-6">
       <h2 class="text-light">{{name}}</h2>
+      <ArmorStat :stats="stats" :cat="name"/>
     </div>
     <hr>
   </div>
@@ -13,6 +14,7 @@
 <script>
 import Axios from 'axios'
 import SoloItem from './SoloItem.vue'
+import ArmorStat from './ArmorStat.vue'
 var SERVER_URL = ''
 const check_url = window.location.hostname
 if (check_url == 'localhost') {SERVER_URL = 'http://localhost:8000/'}
@@ -23,6 +25,7 @@ export default {
   data() {
     return {
       items: [],
+      stats: []
     }
   },
   props: {
@@ -40,6 +43,7 @@ export default {
       })
       .then(res => {
         this.items = res.data.items
+        this.stats = res.data.stats
       })
       .catch(err => {
         console.log(err)
@@ -47,7 +51,8 @@ export default {
     }
   },
   components: {
-    SoloItem
+    SoloItem,
+    ArmorStat
   }
 }
 </script>

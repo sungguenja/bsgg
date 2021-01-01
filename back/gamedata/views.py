@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.core import serializers
 from django.shortcuts import render
 from django.forms.models import model_to_dict
+from django.apps import apps
 from .models import *
 import json
 
@@ -35,7 +36,7 @@ def search_item(request,item_name):
 
 def search_category(request,category_type):
     total_item = Item.objects.filter(kinds=category_type)
-    data = {'items':[]}
+    data = {'items':[],'stats':[]}
     for it in total_item:
         now = {}
         now['name'] = it.name
@@ -43,6 +44,9 @@ def search_category(request,category_type):
         now['rank'] = it.rank
         now['pk'] = it.pk
         data['items'].append(now)
+        stats = apps.get_model('characters','ArmorStat').objects.filter(item=it.pk)
+        for stat in stats:
+            data['stats'].append({'name':it.name,'solo':stat.solo_win,'duo':stat.duo_win,'squad':stat.squad_win})
     return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})
 
 def item_detail(request,pk):
@@ -52,7 +56,22 @@ def item_detail(request,pk):
     right_item_list = Item.objects.filter(material_right=pk)
     area_list = AreaItem.objects.filter(item_id=pk)
     animal_list = AnimalItem.objects.filter(item_id=pk)
-    data = {'upper':[],'item':item,'animal':[],'area':[]}
+    weapon_stat = apps.get_model('characters','WeaponStat').objects.filter(item=pk)
+    statistcs = []
+    for i in weapon_stat:
+        for j in statistcs:
+            if j['character'] == i.charac_weapon.charac.name:
+                j[i.mode] = {'win_rate':i.win_rate,'pick_rate':i.pick_rate}
+                break
+        else:
+            statistcs.append({})
+            statistcs[-1]['character'] = i.charac_weapon.charac.name
+            statistcs[-1][i.mode] = {'win_rate':i.win_rate,'pick_rate':i.pick_rate}
+    armor_stats = []
+    arm_st = apps.get_model('characters','ArmorStat').objects.filter(item=pk)
+    for i in arm_st:
+        armor_stats.append({'solo':i.solo_win,'duo':i.duo_win,'squad':i.squad_win})
+    data = {'upper':[],'item':item,'animal':[],'area':[],'statistics':statistcs,'armor_stats':armor_stats}
     for it in left_item_list:
         now = {}
         now['name'] = it.name

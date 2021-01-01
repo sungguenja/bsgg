@@ -42,6 +42,35 @@
                 <b v-for="(value,index) in item.animal" :key="value.pk+index+value.name"><span @click="GoAnimalDetail(value.pk)" style="cursor: pointer;"><img :src="`https://raw.githubusercontent.com/sungguenja/lumiaimg/master/동물/${value.name}.png`" alt="" style="height: 40px"><br>{{value.name}}</span><br></b>
               </td>
             </tr>
+            <tr v-if="item.statistics.length != 0">
+              <td>통계</td>
+              <table>
+                <thead>
+                  <tr>
+                    <td>캐릭터</td>
+                    <td>솔로</td>
+                    <td>듀오</td>
+                    <td>스쿼드</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(stats,index) in item.statistics" :key="index+stats.character+stats.Solo.win_rate+stats.Duo.pick_rate">
+                    <td>{{stats.character}}</td>
+                    <td>승률:{{stats.Solo.win_rate}}%<br>픽률:{{stats.Solo.pick_rate}}%</td>
+                    <td>승률:{{stats.Duo.win_rate}}%<br>픽률:{{stats.Duo.pick_rate}}%</td>
+                    <td>승률:{{stats.Squad.win_rate}}%<br>픽률:{{stats.Squad.pick_rate}}%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </tr>
+            <tr v-if="item.armor_stats.length != 0">
+              <td>통계</td>
+              <td>
+                <b>솔로: {{item.armor_stats[0].solo}}%</b><br>
+                <b>듀오: {{item.armor_stats[0].duo}}%</b><br>
+                <b>스쿼드: {{item.armor_stats[0].squad}}%</b>
+              </td>
+            </tr>
           </tbody>
         </table>
         <button class="btn btn-dark" @click="GoBack">아이템 목록으로</button>
