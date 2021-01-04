@@ -67,7 +67,7 @@
             <CharStatChart :all_stat="all_state" :stat="stat" :ranker="false" v-show="view_rank == 0"/>
             <CharStatChart :all_stat="all_state" :stat="stat" :ranker="true" v-show="view_rank == 1"/>
             <div v-show="view_rank == 2" v-for="(statsz, index) in weapon_state" :key="index+statsz[0].name+index+statsz[0].cate+statsz.length" >
-              <button @click="ChangeWeaponStat" v-show="index == WeaponShow">{{weapons[WeaponShow].name}}</button>
+              <button @click="ChangeWeaponStat" v-show="index == WeaponShow">{{weapon_state[WeaponShow].name}}</button>
               <WeaponChart :stat="statsz" v-show="index == WeaponShow"/>
             </div>
           </div>
