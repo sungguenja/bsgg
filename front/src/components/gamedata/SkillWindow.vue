@@ -31,6 +31,9 @@
               <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/엠마/hat_R.gif"><br>
               <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/엠마/rabbit_R.gif"><br>
             </div>
+            <div v-if="chname == '레녹스' && button =='패시브'">
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/엠마/basic_패시브2.gif">
+            </div>
             <a v-html="detailText"></a>
           </td>
         </tr>
