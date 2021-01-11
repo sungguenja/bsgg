@@ -18,7 +18,8 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('matchhistory/', include('matchhistory.urls')),
-    path('characters/', include('characters.urls')),
-    path('gamedata/',include('gamedata.urls')),
+    path('matchhistory/', include('matchhistory.urls',namespace='matchhistory')),
+    path('characters/', include('characters.urls',namespace='characters')),
+    path('gamedata/',include('gamedata.urls',namespace='gamedata')),
+    path('community/',include('community.urls',namespace='community')),
 ]

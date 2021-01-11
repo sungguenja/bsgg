@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'accounts',
     'characters',
     'gamedata',
+    'community',
     
     # third party app
     'corsheaders',
