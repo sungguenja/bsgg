@@ -11,6 +11,7 @@ class Playthrough(models.Model):
     arm = models.IntegerField()
     leg = models.IntegerField()
     accessory = models.IntegerField()
+    password = models.CharField(max_length=255,default="")
 
 class Route(models.Model):
     play_through = models.ForeignKey(Playthrough,on_delete=models.CASCADE)

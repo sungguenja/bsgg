@@ -1,7 +1,7 @@
 <template>
   <div class="" style="margin-left: 50px;">
     <div class="d-flex">
-      <div class="" style="width: 30%; margin-right: 100px;">
+      <div class="" style="width: 40%; margin-right: 100px;">
         <Fusion :id="pk"></Fusion>
       </div>
       <div class="">

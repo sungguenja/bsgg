@@ -20,6 +20,7 @@
             <img v-if="chname == '키아라' && button == 'E'" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬/키아라/after_E.png" alt="" style="height:80px;">
             <img v-if="chname == '키아라' && button == 'R'" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬/키아라/after_R.png" style="height:80px;">
             <img v-if="chname == '쇼이치' && button == 'Q'" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬/쇼이치/after_Q.png" alt="" style="height:80px;">
+            <img v-if="chname == '루크' && button == 'Q'" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬/루크/after_Q.png" alt="" style="height:80px;">
             <br><b-button v-b-toggle="button+button" class="m-1">스킬<br>상세정보</b-button>
           </td>
           <td>
@@ -33,6 +34,15 @@
             </div>
             <div v-if="chname == '레녹스' && button =='패시브'">
               <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/레녹스/basic_패시브2.gif">
+            </div>
+            <div v-if="chname == '루크' && button =='패시브'">
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/루크/basic_패시브2.gif">
+            </div>
+            <div v-if="chname == '루크' && button =='Q'">
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/루크/after_Q.gif">
+            </div>
+            <div v-if="chname == '캐시' && button =='R'">
+              <img style="width: 50%;" src="https://raw.githubusercontent.com/sungguenja/lumiaimg/master/스킬설명/캐시/basic_R2.gif">
             </div>
             <a v-html="detailText"></a>
           </td>

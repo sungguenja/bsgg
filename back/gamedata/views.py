@@ -35,7 +35,7 @@ def search_item(request,item_name):
     return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})
 
 def search_category(request,category_type):
-    total_item = Item.objects.filter(kinds=category_type)
+    total_item = Item.objects.filter(kinds=category_type).order_by("rank")
     data = {'items':[],'stats':[]}
     for it in total_item:
         now = {}
