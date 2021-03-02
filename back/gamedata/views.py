@@ -110,7 +110,7 @@ def only_that(request,pk):
     for i in get_area:
         area = Area.objects.get(pk=i['fields']['area_id'])
         item[0]['area'].append({'name':area.name,'quantity':i['fields']['quantity']})
-    return JsonResponse(item,safe=False,json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(item[0],safe=False,json_dumps_params={'ensure_ascii': False})
 
 def all_area(request,pk):
     data = []

@@ -54,10 +54,10 @@ export default {
         url: SERVER_URL + 'gamedata/only/' + this.id
       })
       .then(res => {
-        this.item = res.data[0].fields
+        this.item = res.data.fields
         this.area = ''
-        for(var i=0; i<res.data[0].area.length; i++) {
-          this.area += `\n ${res.data[0].area[i].name} : ${res.data[0].area[i].quantity}개`
+        for(var i=0; i<res.data.area.length; i++) {
+          this.area += `\n ${res.data.area[i].name} : ${res.data.area[i].quantity}개`
         }
         if(this.item.material_left != 0){this.left = this.item.material_left}
         else {this.left = null}
