@@ -16,6 +16,7 @@ import MapDetail from '../views/gamedata/MapDetail.vue'
 import AnimalList from '../views/gamedata/AnimalList.vue'
 import AnimalDetail from '../views/gamedata/AnimalDetail.vue'
 import Ranking from '../views/open_api/Ranking.vue'
+import PlayThroughList from '../views/community/PlayThroughList.vue'
 
 Vue.use(VueRouter)
 
@@ -102,6 +103,11 @@ const routes = [
     path: '/rank',
     name: 'Ranking',
     component: Ranking
+  },
+  {
+    path: '/playthroughlist',
+    name: 'PlayThroughList',
+    component: PlayThroughList
   },
   {
     path: '/notfound',

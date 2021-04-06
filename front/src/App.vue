@@ -10,7 +10,7 @@
           <span class="nav_button_text" @click="GoPush(1)">캐릭터 정보</span>
           <span class="nav_button_text" @click="GoPush(3)">게임 정보</span>
           <span class="nav_button_text" @click="GoPush(4)">공략</span>
-          <span class="nav_button_text" @click="GoPush(4)">Help</span>
+          <span class="nav_button_text" @click="GoPush(5)">Help</span>
         </div>
         <div style="width:40%;"></div>
         <form @submit.prevent="Search" class="my-2" style="width: 20%; z-index: 1;">
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       backgroundImg: require('./assets/image/assets/bg.jpg'),
-      can_go: ['News','CharacterList','Home','SelectCategory','NotFoundPage'],
+      can_go: ['News','CharacterList','Home','SelectCategory',"PlayThroughList",'NotFoundPage'],
       user_height: screen.height,
       search_text: null,
       BigDisplay: false

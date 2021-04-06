@@ -7,13 +7,22 @@ import json
 from .models import *
 
 # Create your views here.
-def all_check(request):
-    play_throughs = Playthrough.objects.all()
-    play_throughs = serializers.serialize('json',play_throughs)
-    play_throughs = json.loads(play_throughs)
+def all_check(request,characweapon):
     data = []
-    for article in play_throughs:
-        data.append({'pk':article['pk'],'title':article['fields']['title']})
+    if characweapon==0:
+        play_throughs = Playthrough.objects.all()
+        play_throughs = serializers.serialize('json',play_throughs)
+        play_throughs = json.loads(play_throughs)
+        for article in play_throughs:
+            data.append({'pk':article['pk'],'title':article['fields']['title']})
+    else:
+        characweapon_list = apps.get_model('characters','UsedWeapon').objects.filter(charac=characweapon)
+        for characweapon in characweapon_list:
+            play_throughs = Playthrough.objects.filter(characweapon=characweapon.id)
+            play_throughs = serializers.serialize('json',play_throughs)
+            play_throughs = json.loads(play_throughs)
+            for article in play_throughs:
+                data.append({'pk':article['pk'],'title':article['fields']['title']})
     return JsonResponse(data,safe=False,json_dumps_params={'ensure_ascii': False})
 
 def gamedata(request,pk):
